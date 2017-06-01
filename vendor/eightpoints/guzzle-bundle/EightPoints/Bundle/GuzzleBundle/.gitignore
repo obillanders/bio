@@ -1,6 +1,0 @@
-# Ignore potentially sensitive phpunit file
-phpunit.xml
-
-# Ignore composer generated files
-composer.lock
-vendor/
