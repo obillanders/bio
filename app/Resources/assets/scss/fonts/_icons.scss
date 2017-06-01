@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'icons';
+    src: url('./../fonts/icons/icons.eot?1xful1');
+    src: url('./../fonts/icons/icons.eot?1xful1#iefix') format('embedded-opentype'),
+    url('./../fonts/icons/icons.ttf?1xful1') format('truetype'),
+    url('./../fonts/icons/icons.woff?1xful1') format('woff'),
+    url('./../fonts/icons/icons.svg?1xful1#icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-pointer:before {
+    content: "\e922";
+}
+
+.ic-cross2:before {
+    content: "\e91f";
+}
+
+.ic-lock3:before {
+    content: "\e920";
+}
+
+.ic-userprofile:before {
+    content: "\e921";
+}
+
+.ic-ul-arrow:before {
+    content: "\e91e";
+}
+
+.ic-actus2:before {
+    content: "\e91d";
+}
+
+.ic-menu:before {
+    content: "\e91c";
+}
+
+.ic-cross:before {
+    content: "\e91a";
+}
+
+.ic-plus:before {
+    content: "\e91b";
+}
+
+.ic-contrats:before {
+    content: "\e915";
+}
+
+.ic-delegue:before {
+    content: "\e916";
+}
+
+.ic-remis:before {
+    content: "\e917";
+}
+
+.ic-scli:before {
+    content: "\e918";
+}
+
+.ic-star:before {
+    content: "\e919";
+}
+
+.ic-youtube:before {
+    content: "\e914";
+}
+
+.ic-facebook:before {
+    content: "\ea90";
+}
+
+.ic-twitter:before {
+    content: "\ea96";
+}
+
+.ic-logout:before {
+    content: "\e913";
+}
+
+.ic-fatarrow:before {
+    content: "\e90f";
+}
+
+.ic-formation:before {
+    content: "\e910";
+}
+
+.ic-hands:before {
+    content: "\e911";
+}
+
+.ic-home2:before {
+    content: "\e912";
+}
+
+.ic-leftarrow:before {
+    content: "\e90e";
+}
+
+.ic-city:before {
+    content: "\e90a";
+}
+
+.ic-home:before {
+    content: "\e90b";
+}
+
+.ic-mail:before {
+    content: "\e90c";
+}
+
+.ic-phone:before {
+    content: "\e90d";
+}
+
+.ic-question:before {
+    content: "\e909";
+}
+
+.ic-actus:before {
+    content: "\e900";
+}
+
+.ic-graph:before {
+    content: "\e901";
+}
+
+.ic-lock:before {
+    content: "\e902";
+}
+
+.ic-lock2:before {
+    content: "\e903";
+}
+
+.ic-medbottle:before {
+    content: "\e904";
+}
+
+.ic-play:before {
+    content: "\e905";
+}
+
+.ic-roundedsquare:before {
+    content: "\e906";
+}
+
+.ic-services:before {
+    content: "\e907";
+}
+
+.ic-userlog:before {
+    content: "\e908";
+}

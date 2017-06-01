@@ -1,0 +1,5 @@
+AppBundle\Entity\Classification\Context:
+    context_default:
+        id: default
+        name: default
+        enabled: true

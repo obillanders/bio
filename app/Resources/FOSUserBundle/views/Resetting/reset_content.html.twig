@@ -1,0 +1,37 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% form_theme form 'Form/fields.html.twig' %}
+
+<div class="connexion_box request-password">
+    {# Invisible captcha #}
+    {#<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("fos_user_registration_register").submit();
+        }
+    </script>#}
+    <a href="{{ path('fos_user_security_login') }}" class="back_link-pillshaped">
+        <div class="ic-leftarrow"></div>
+        <div class="backlink">Retour</div>
+    </a>
+    <span class="ic-lock"></span>
+    <span class="roundedsquare"></span>
+    <h3 class="connexion_box-style-title">
+        <span>Connexion</span><br />
+        Mot de passe perdu
+    </h3>
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset', 'novalidate': 'novalidate' } }) }}
+    {{ form_row(form.plainPassword.first, {
+            'attr': {'placeholder': 'Mot de passe'},
+            'label_attr': {'class': 'ic-lock2 text-hide'}
+        })
+    }}
+    {{ form_row(form.plainPassword.second, {
+        'attr': {'placeholder': 'Confirmez le mot de passe'},
+        'label_attr': {'class': 'ic-lock2 text-hide'}
+    })
+    }}
+    {{ form_rest(form) }}
+    <input type="submit" value="Validez" class="btn btn-pink g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback='onSubmit' />
+    {{ form_end(form) }}
+</div>

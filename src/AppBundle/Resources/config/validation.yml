@@ -1,0 +1,10 @@
+FOS\UserBundle\Model\User:
+    properties:
+        plainPassword:
+            - NotBlank:
+                groups: [AppResetting]
+            - Regex:
+                pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,160}$/'
+                groups: [AppResetting]
+                message: "Le mot de passe doit contenir au minimum 8 caractères alphanumériques et doit comprendre au moins une majuscule, une minuscule et un chiffre."
+

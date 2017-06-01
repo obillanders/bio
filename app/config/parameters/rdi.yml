@@ -1,0 +1,6 @@
+parameters:
+    rdi:
+        send_type: ["api", "mail"]
+        main_handler: "api" # handler dont le retour est utilisé pour générer le message utilisateur
+        send_from: "admin@proconnect.com"
+        send_to: %rdi_send_mail%

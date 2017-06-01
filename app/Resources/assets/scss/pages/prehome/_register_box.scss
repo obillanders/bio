@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.register-box{
+  text-align: center;
+  position: relative;
+  margin: 15px 0 40px 0;
+  .ic-roundedsquare{
+    position: absolute;
+    right: -20%;
+    top: 7px;
+    color: $pink-base;
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .register-box{
+    .ic-roundedsquare{
+      top:80px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .register-box .ic-roundedsquare{
+    right: 0;
+    top:70px;
+  }
+}

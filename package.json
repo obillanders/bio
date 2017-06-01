@@ -1,0 +1,21 @@
+{
+  "name": "biogaran-pro-connect",
+  "author": "dev361",
+  "license": "ISC",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "dev361-front-builder": "^1.0.6",
+    "icheck": "^1.0.2",
+    "jquery": "^3.1.1",
+    "lity": "^2.2.2",
+    "selectric": "^1.11.1"
+  },
+  "scripts": {
+    "dfb": "node_modules/.bin/dfb help",
+    "dfb:build": "./node_modules/.bin/dfb build",
+    "dfb:build:prod": "./node_modules/.bin/dfb build:prod",
+    "dfb:watch": "./node_modules/.bin/dfb watch",
+    "dfb:live": "./node_modules/.bin/dfb live"
+  }
+}

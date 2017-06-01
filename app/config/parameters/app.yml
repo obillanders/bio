@@ -1,0 +1,11 @@
+parameters:
+    app:
+        scli_number: "0 811 907 917"
+        youtube_homepage: "https://www.youtube.com/watch?v=G9WMPsyEXqs"
+    app_mail_adresses:
+        from_email:
+            noreply: noreply@proconnect.com
+        to_email:
+            contact:
+                { "test@proconnect.com": "Biogaran Pro Connect" }
+

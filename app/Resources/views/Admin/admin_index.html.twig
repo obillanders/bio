@@ -1,0 +1,10 @@
+{% extends ':default:index.html.twig' %}
+
+{% block content %}
+    <h1>Espace Admin</h1>
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+    {% endif %}
+{% endblock %}

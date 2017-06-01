@@ -1,0 +1,56 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="connexion_box">
+    {#<h3 class="connexion_box-style-title-mobile">
+        <span>Connexion</span>
+    </h3>#}
+    {#<span class="ic-lock" id="mobile-connexion"></span>#}
+    <span class="roundedsquare"></span>
+    <h3 class="connexion_box-style-title">
+        <span class="connexion_box-style-title-txt">
+            <span class="mobile-border">Connexion</span>
+        </span>
+        <span class="ic-lock" id="mobile-connexion"></span>
+        Accédez à votre<br />espace personnalisé
+    </h3>
+
+    {% if error %}
+        <div class="field-error-content">Vos paramètres de connexion sont incorrects</div>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post" novalidate='novalidate'>
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+        <div class="form-group">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="E-mail" />
+            <label for="username" class="text-hide ic-userlog">{{ 'security.login.username'|trans }}</label>
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" name="_password" required="required" placeholder="Mot de passe" />
+            <label for="password" class="text-hide ic-lock2">{{ 'security.login.password'|trans }}</label>
+        </div>
+
+        <input type="submit" id="_submit" name="_submit" value="s'identifier" class="btn btn-blue" />
+    </form>
+    <a href="{{ path('fos_user_resetting_request') }}" class="cb-oubli-pw"><span class="ic-question"></span>Mot de passe oublié ?</a>
+    <p class="cb-info">
+        En cas de difficulté de connexion,<br />
+        contactez notre service client au <span class="numero-tel">0 811 907 917</span><br />
+        <span>(prix appel local)</span>
+    </p>
+</div>
+
+<div class="register-box">
+    <span class="ic-roundedsquare"></span>
+    <h3 class="connexion_box-style-title connexion_box-style-title-noic">
+        <span class="connexion_box-style-title-txt">
+            <span class="mobile-border">Inscription</span>
+        </span>
+        Créez votre<br />espace personnalisé
+    </h3>
+    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-pink">S'inscrire</a>
+</div>
+
+
+

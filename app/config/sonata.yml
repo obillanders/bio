@@ -1,0 +1,68 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+sonata_admin:
+    title: 'Biogaran pro connect'
+    title_logo: assets/img/admin/admin-logo.png
+    dashboard:
+        groups:
+            app.admin.group.media:
+                label:  Media
+                icon:   '<i class="fa fa-camera-retro"></i>'
+                items:
+                    - sonata.media.admin.media
+            app.admin.group.news:
+                label:  News
+                icon:   '<i class="fa fa-newspaper-o"></i>'
+                items:
+                    - admin.news
+            app.admin.group.faq:
+                label:  Faq
+                icon:   '<i class="fa fa-question-circle"></i>'
+                items:
+                    - admin.faq
+            app.admin.group.pharmacien:
+                label:  Pharmacien
+                icon:   '<i class="fa fa-universal-access"></i>'
+                items:
+                    - admin.pharmacien
+    templates:
+        user_block: :Block:user_block.html.twig
+        layout:  :Admin:layout_form.html.twig
+        outer_list_rows_tree: 'RedCodeTreeBundle:CRUD:tree.html.twig'
+
+sonata_classification:
+    class:
+        category:     AppBundle\Entity\Classification\Category
+        tag:          AppBundle\Entity\Classification\Tag
+        collection:   AppBundle\Entity\Classification\Collection
+        media:        AppBundle\Entity\Media\Media
+        context:      AppBundle\Entity\Classification\Context
+
+sonata_media:
+    db_driver: doctrine_orm
+    class:
+        media: AppBundle\Entity\Media\Media
+        gallery: AppBundle\Entity\Media\Gallery
+        gallery_has_media: AppBundle\Entity\Media\GalleryHasMedia
+        category: AppBundle\Entity\Classification\Category
+    default_context: default
+    contexts:
+        default:
+            providers:
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+    cdn:
+        server:
+            path: /uploads/media
+    filesystem:
+        local:
+            directory:  "%kernel.root_dir%/../web/uploads/media"
+            create:     false

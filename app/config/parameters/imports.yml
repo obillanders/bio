@@ -1,0 +1,35 @@
+parameters:
+    import:
+        officines-pharmaciens:
+            officines:
+                type: csv
+                mode: DIFF_WITHOUT_DELETE
+                batchSize: 100
+                entity: "AppBundle\\Entity\\Officine"
+                filePattern: "neo_sp_off_[0-9]{12}.csv"
+                encoding: Windows-1252
+
+            pharmaciens:
+                type: csv
+                mode: DIFF_WITHOUT_DELETE
+                batchSize: 100
+                entity: "AppBundle\\Entity\\Pharmacien"
+                filePattern: "neo_sp_int_[0-9]{12}.csv"
+                encoding: Windows-1252
+
+            officines-pharmaciens:
+                type: csv
+                mode: DIFF_WITHOUT_DELETE
+                batchSize: 100
+                entity: "AppBundle\\Entity\\OfficinePharmacien"
+                filePattern: "neo_sp_lpi_[0-9]{12}.csv"
+                encoding: Windows-1252
+
+        contrats:
+            contrats:
+                type: csv
+                mode: DIFF_WITHOUT_DELETE
+                batchSize: 100
+                entity: "AppBundle\\Entity\\Contrat"
+                filePattern: "neo_sp_cnt_[0-9]{12}.csv"
+                encoding: Windows-1252

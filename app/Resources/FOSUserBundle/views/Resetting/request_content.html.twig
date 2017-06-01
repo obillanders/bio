@@ -1,0 +1,33 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="connexion_box request-password">
+
+    <a href="{{ path('fos_user_security_login') }}" class="back_link-pillshaped">
+        <div class="ic-leftarrow"></div>
+        <div class="backlink">Retour</div>
+    </a>
+
+    <span class="roundedsquare"></span>
+
+    <h3 class="connexion_box-style-title">
+        <span class="connexion_box-style-title-txt">
+            <span class="mobile-border">Connexion</span>
+        </span>
+        <span class="ic-lock" id="mobile-connexion"></span>
+        Mot de passe perdu
+    </h3>
+
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" novalidate='novalidate'>
+        <p class="cb-info">Veuillez saisir votre adresse e-mail pour obtenir un nouveau mot de passe.</p>
+        <div class="form-group">
+            <input type="text" placeholder="E-mail" id="username" name="username" required="required" />
+            <label for="username" class="text-hide ic-userlog">{{ 'security.login.username'|trans }}</label>
+        </div>
+        <input type="submit" value="Envoyer la demande" class="btn btn-blue" />
+    </form>
+    <p class="cb-info">
+        En cas de difficulté de connexion,<br />
+        contactez notre service client au <a href="tel:0 811 907 917" class="numero-tel">0 811 907 917</a><br />
+        <span>(prix appel local)</span>
+    </p>
+</div>

@@ -1,0 +1,120 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% form_theme form 'Form/fields.html.twig' %}
+
+<div class="register_box-form">
+
+    <a href="{{ path('fos_user_security_login') }}" class="back_link-pillshaped">
+        <div class="ic-leftarrow"></div>
+        <div class="backlink">Retour</div>
+    </a>
+
+    <h3 class="connexion_box-style-title connexion_box-style-title-noic">
+        <span class="connexion_box-style-title-txt">
+            <span class="mobile-border">Inscription</span>
+        </span>
+    </h3>
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register', 'id': 'fos_user_registration_register', 'novalidate': 'novalidate'}}) }}
+
+        <span class="register_box-form-step">1</span>
+
+        <fieldset>
+            <legend>Vous</legend>
+            {{ form_row(form.firstname, {
+                    'attr': {'placeholder': 'Nom'},
+                    'label_attr': {'class': 'ic-userlog text-hide'}
+                })
+            }}
+
+            {{ form_row(form.lastname, {
+                    'attr': {'placeholder': 'Prénom'},
+                    'label_attr': {'class': 'ic-userlog text-hide'}
+                })
+            }}
+
+            {{ form_row(form.email, {
+                    'attr': {'placeholder': 'E-mail'},
+                    'label_attr': {'class': 'ic-mail text-hide'}
+                })
+            }}
+
+        </fieldset>
+
+        <fieldset>
+            <legend class="register_box-form-legend">Votre officine</legend>
+            {{ form_row(form.officineName, {
+                    'attr': {'placeholder': 'Nom'},
+                    'label_attr': {'class': 'ic-home text-hide'}
+                })
+            }}
+
+            {{ form_row(form.officineCity, {
+                    'attr': {'placeholder': 'Ville'},
+                    'label_attr': {'class': 'ic-city text-hide'}
+                })
+            }}
+
+            {{ form_row(form.officinePhone, {
+                    'attr': {'placeholder': 'Téléphone'},
+                    'label_attr': {'class': 'ic-phone text-hide'}
+                })
+            }}
+        </fieldset>
+
+        <fieldset class="registration-form-validation">
+           <div class="form-group">
+                {{ form_widget(form.cgu) }}
+                <p class="validation-conditions">
+                    J’accepte <a href="#">les conditions générales
+                    d’utilisation du site</a> et j’atteste être
+                    un professionnel de santé
+                </p>
+               {{ form_errors(form.cgu) }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.offres) }}
+                <p class="validation-conditions">
+                    Je souhaite recevoir des offres de services ou des informations promotionnelles de la part de Biogaran.
+                </p>
+            </div>
+            <div class="recaptcha-container">
+                {{ form_widget(form.recaptcha) }}
+                {{ form_errors(form.recaptcha) }}
+            </div>
+
+        </fieldset>
+        {{ form_rest(form) }}
+
+        <div>
+            <input type="submit" value="Validez" class="btn btn-pink" />
+        </div>
+        <div class="required-legend">
+            * champs obligatoires
+        </div>
+    {{ form_end(form) }}
+
+    <div class="register_box-form-step_container">
+        <div class="register_box-form-step_col">
+            <span class="register_box-form-step">2</span>
+        </div>
+        <div class="register_box-form-step_col">
+            <p>
+                <span>Recevez vos identifiants</span>
+                suite à l’appel d’un conseiller clientèle
+            </p>
+        </div>
+    </div>
+
+    <div class="register_box-form-step_container">
+        <div class="register_box-form-step_col">
+            <span class="register_box-form-step">3</span>
+        </div>
+        <div class="register_box-form-step_col">
+            <p>
+                <span>Connectez-vous pour profiter de tous</span>
+                les avantages du site pro Biogaran
+            </p>
+        </div>
+    </div>
+</div>

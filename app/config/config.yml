@@ -1,0 +1,204 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: sonata.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+    translator: { fallbacks: ["%locale%"] }
+    serializer:
+        enabled: true
+        enable_annotations: true
+    ide: 'phpstorm://open?file=%%f&line=%%l'
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+            - 'SonataFormatterBundle:Form:formatter.html.twig'
+            - "SonataMediaBundle:Form:media_widgets.html.twig"
+    globals:
+        app_config: %app%
+
+sonata_formatter:
+    formatters:
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
+
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        logging:  true
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            gedmo_tree:
+                type: annotation
+                prefix: Gedmo\Tree\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                alias: GedmoTree # (optional) it will default to the name set for the mapping
+                is_bundle: false
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+# FOS User configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+        user_manager: app.manager.user
+    resetting:
+        email:
+            template: '@FOSUser/Email/resetting_email.txt.twig'
+        form:
+#            type: AppBundle\Form\ResettingFormType
+            validation_groups:  [ AppResetting ]
+    from_email:
+        address: "noreply@proconnect.com"
+        sender_name: "Biogaran Pro Connect"
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+            validation_groups:  [ AppRegistration ]
+    use_flash_notifications: true
+    use_authentication_listener: false
+
+monolog:
+    channels: [import, console]
+    handlers:
+        app-main-log:
+            type: stream
+            path:  "%kernel.logs_dir%/app/app_%kernel.environment%.log"
+            level: info
+            channels: [console, import]
+
+lexik_maintenance:
+    driver:
+         # File driver
+        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver'  # class for file driver
+        options: {file_path: "%kernel.root_dir%/cache/lock"}           # file_path is the complete path for create the file
+
+knp_menu:
+    providers:
+        builder_alias: false    # disable the builder-alias-based provider
+        builder_service: true
+        container_aware: true   # keep this one enabled. Can be omitted as it is the default
+
+stof_doctrine_extensions:
+    default_locale: %locale%
+    orm:
+        default:
+            timestampable: true
+            tree: true
+
+guzzle:
+    clients:
+        api_biogaran_rdi:
+            base_url: "http://preprod-simulateur360-v2.dev361.com"
+            headers:
+                Accept: "application/json"
+            options:
+                auth:
+                    - gdh
+                    - gdhapiuser
+
+fos_rest:
+    allowed_methods_listener: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    param_fetcher_listener: true
+    format_listener:
+        enabled:    true
+        rules:
+            - { priorities: [json], fallback_format: json }
+    view:
+        view_response_listener: force
+        mime_types:
+            json:
+                - application/json
+    serializer:
+        serialize_null: true
+    zone:
+        - { path: ^/api }
+    service:
+        inflector: app.util.inflector.noop
+    exception:
+        messages:
+            'AppBundle\Exception\ApiException': true
+
+nelmio_api_doc:
+    name:                   Biogaran Pro API Documentation
+    sandbox:
+        accept_type:        application/json
+        request_format:
+            formats:        []
+            default_format: json
+            method:         accept_header
+        body_format:
+            formats:        []
+            default_format: json
+
+# recaptcha créé sur l'adresse xvallot@groupe361.com
+ewz_recaptcha:
+    public_key:  6LdnMxgUAAAAAHjG60oxrfd9K2Y61w3DrZ994LPV
+    private_key: 6LdnMxgUAAAAAPL-nDs2NmwRQAyJe0mofm9wG_ER

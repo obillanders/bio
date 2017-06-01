@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+///*************************************
+//* @_00
+//*************************************/
+
+.btn{
+  padding:18px;
+  font: normal 12px/1.3em bentonsans-medium, sans-serif;
+  text-transform: uppercase;
+  letter-spacing:3px;
+  color: $white;
+  .ph-right-col &{
+    width:100%;
+  }
+}
+.btn-blue {
+  @include transition-ease-in-out();
+  background-color: $blue-base;
+  @include hover-focus-active {
+    color: $white;
+    background-color: darken($blue-base, 5%);
+  }
+}
+.btn-pink {
+  @include transition-ease-in-out();
+  background-color: $pink-base;
+  @include hover-focus-active {
+    color: $white;
+    background-color: darken($pink-base, 5%);
+  }
+}

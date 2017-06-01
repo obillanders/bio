@@ -1,0 +1,17 @@
+AppBundle\Entity\Officine:
+    officine_{1..10}:
+        nridPharmacie (unique): '<randomNumber(5)>'
+        nomPharmacie: '<sentence(2)>'
+        cip: '<randomNumber(3)>'
+        adresse: '<streetAddress()>'
+        codePostal: '<postcode()>'
+        localite: '<city()>'
+        segment: '<sentence(2)>'
+        email: '<email()>'
+        telephoneFixe: '<e164PhoneNumber()>'
+        pmp: '<name()>'
+        telephonePmp: '<e164PhoneNumber()>'
+        nridGroupement (unique): '<randomNumber(5)>'
+        nomGroupement: '<company()>'
+        nridDepositaire: '<randomNumber(5)>'
+        nomDepositaire: '<name()>'

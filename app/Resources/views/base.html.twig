@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="fr"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="fr"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="fr"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="ie ie9" lang="fr"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="fr-FR">
+<!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="{% block page_description %}{% endblock %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="{{ asset('assets/js/fallback/html5shiv.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/fallback/respond-1-4-2.min.js') }}"></script>
+        <![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        {% block stylesheets %}
+            <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+        {% endblock %}
+        <!--Specif css-->
+        {% block master_specif_stylesheet %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}" />
+    </head>
+    <body class="{{ isHome is defined ? isHome : app.request.pathInfo|trim('/')|replace('/', '-')~" page" }}">
+    <script>
+        WebFont.load({
+            custom: {
+                families: ['bentonsans-ultracondensed, bentonsans-book']
+            },
+            timeout: 10000
+        });
+    </script>
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/vendors.js') }}"></script>
+            <script src="{{ asset('assets/js/scripts.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

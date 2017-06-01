@@ -1,0 +1,50 @@
+imports:
+    - { resource: config_dev.yml }
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+        name: MOCKSESSID
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        path:     "%kernel.cache_dir%/test.db"
+
+liip_functional_test:
+    command_verbosity: debug
+    cache_sqlite_db: true
+
+parameters:
+    import:
+        import-csv-1:
+            type: csv
+            nbEntityByBatch: 5
+            files:
+                "%kernel.root_dir%/../tests/import_sources/pharmaciens.csv": "AppBundle\\Entity\\Pharmacien"
+        import-csv-2:
+            type: csv
+            nbEntityByBatch: 5
+            files:
+                "%kernel.root_dir%/../tests/import_sources/pharmaciens-2c-1d-2u.csv": "AppBundle\\Entity\\Pharmacien"
+        import-csv-batch-fail:
+            type: csv
+            nbEntityByBatch: 5
+            files:
+                "%kernel.root_dir%/../tests/import_sources/pharmaciens-1batchfail.csv": "AppBundle\\Entity\\Pharmacien"
+        import-csv-with-errors:
+                    type: csv
+                    nbEntityByBatch: 5
+                    files:
+                        "%kernel.root_dir%/../tests/import_sources/pharmaciens-with-errors.csv": "AppBundle\\Entity\\Pharmacien"

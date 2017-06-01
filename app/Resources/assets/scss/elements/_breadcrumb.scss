@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.breadcrumb{
+    border-bottom:1px solid $grey-lighter;
+    padding:15px 0 10px 10vw;
+    color: $blue-base2;
+    a{
+        padding:0 15px 0 0;
+        font:normal 14px/1em 'bentonsans-ultracondensed', sans-serif ;
+        text-transform: uppercase;
+        letter-spacing:1.5px;
+        color: $grey-medium;
+        @include hover-focus-active{
+            color: $black;
+        }
+    }
+    span{
+        padding:0 15px 0 0;
+    }
+}

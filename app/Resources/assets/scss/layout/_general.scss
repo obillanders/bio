@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+body.home,
+body.profil{
+  background-color: $grey-bodybg;
+}
+.container-fluid{
+  padding-left:0;
+    .page &{
+        padding-right:0;
+    }
+}
+
+/* Media queries */
+@media screen and (max-width: 767px) {
+  .container-fluid{
+    padding-left:10px;
+    padding-right:10px;
+      .page &{
+          padding-left:0;
+          padding-right:0;
+      }
+  }
+}

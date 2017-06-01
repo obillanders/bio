@@ -1,0 +1,82 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% form_theme form 'Form/fields.html.twig' %}
+
+{% block prehome_right_content %}
+<div class="register_box-form">
+
+    <a href="{{ path('fos_user_security_login') }}" class="back_link-pillshaped">
+        <div class="ic-leftarrow"></div>
+        <div class="backlink">Retour</div>
+    </a>
+
+    <h3 class="connexion_box-style-title connexion_box-style-title-noic">
+        <span class="connexion_box-style-title-txt">
+            <span class="mobile-border">Contact</span>
+        </span>
+    </h3>
+
+    {{ form_start(form, {'method': 'post', 'attr': {'class': 'contact-form', 'id': '', 'novalidate': 'novalidate'}}) }}
+
+        <fieldset>
+            {{ form_row(form.civility, {
+                    'label_attr': {'class': 'ic-userlog'}
+                })
+            }}
+            {{ form_row(form.name, {
+                    'attr': {'placeholder': 'Nom'},
+                    'label_attr': {'class': 'ic-userlog'}
+                })
+            }}
+            {{ form_row(form.firstname, {
+                    'attr': {'placeholder': 'Prénom'},
+                    'label_attr': {'class': 'ic-userlog'}
+                })
+            }}
+            {{ form_row(form.email, {
+                    'attr': {'placeholder': 'E-mail'},
+                    'label_attr': {'class': 'ic-mail'}
+                })
+            }}
+            {{ form_row(form.phone, {
+                    'attr': {'placeholder': 'Téléphone'},
+                    'label_attr': {'class': 'ic-phone'}
+                })
+            }}
+            {{ form_row(form.address, {
+                    'attr': {'placeholder': 'Adresse'},
+                    'label_attr': {'class': 'ic-city'}
+                })
+            }}
+            {{ form_row(form.city, {
+                    'attr': {'placeholder': 'Ville'},
+                    'label_attr': {'class': 'ic-city'}
+                })
+            }}
+            {{ form_row(form.zip, {
+                    'attr': {'placeholder': 'Code Postal'},
+                    'label_attr': {'class': 'ic-city'}
+                })
+            }}
+            {{ form_row(form.message, {
+                    'attr': {'placeholder': 'Votre message'},
+                    'label_attr': {'class': 'invisible'}
+                })
+            }}
+
+            {{ form_rest(form) }}
+        </fieldset>
+        <div class="required-legend">
+            * champs obligatoires
+        </div>
+        <p class="form-mentions">
+            Les informations recueillies font l'objet d'un traitement informatique destiné à répondre à votre demande. Le destinataire des données est BIOGARAN. Conformément à la loi "Informatique et Libertés" du 6 janvier 1978, vous bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent. Si vous souhaitez exercer ce droit et obtenir communication des informations vous concernant, veuillez vous adresser à : BIOGARAN - 15, boulevard Charles de Gaulle - 92707 Colombes Cedex.
+        </p>
+    <div>
+        <input type="submit" value="Validez" class="btn btn-pink" />
+    </div>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+

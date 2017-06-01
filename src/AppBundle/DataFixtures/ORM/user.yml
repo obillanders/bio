@@ -1,0 +1,30 @@
+AppBundle\Entity\Pharmacien:
+    pharmacien_1:
+        nridInterlocuteur: '123456789874563'
+        nom: '<lastName()>'
+        prenom: '<firstName()>'
+        sexe: '50%? "f" : "m"'
+        civilite: '50%? <titleMale()> : <titleFemale()>'
+        titulaire: '50%? "oui" : "non"'
+        dateNaissance: '<dateTime("now")>'
+        email: '50%? @user1->email : @user2->email'
+        telephoneMobile: '<e164PhoneNumber()>'
+        numeroRpps: '<randomNumber(5)>'
+
+AppBundle\Entity\User:
+    user1:
+        username: 'admin'
+        email: 'admin@proconnect.com'
+        enabled: 1
+        plainPassword: '123g361'
+        roles: ['ROLE_ADMIN']
+    user2:
+        username: 'pharmacien'
+        email: 'pharmacien@proconnect.com'
+        enabled: 1
+        plainPassword: '123g361'
+        roles: ['ROLE_OFFICINE_OWNER']
+        pharmacien: '@pharmacien_1'
+        currentOfficine: '@officine_1'
+
+

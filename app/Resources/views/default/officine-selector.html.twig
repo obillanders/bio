@@ -1,0 +1,8 @@
+<form method="POST" action="{{ path('pharmacien_change_current_officine') }}" id="formSelectOfficine">
+    <select id="hdr-usr_box-listofficines" name="officeSelector">
+        {% for officine in listOfficines %}
+            <option value="{{ officine.nridPharmacie }}" {% if officine.nridPharmacie == currentOfficine.nridPharmacie %} selected="selected"{% endif %}>{{ officine.nomPharmacie }}</option>
+        {% endfor %}
+    </select>
+</form>
+

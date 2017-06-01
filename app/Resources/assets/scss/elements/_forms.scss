@@ -1,0 +1,512 @@
+@charset "UTF-8";
+
+///*************************************
+//* @_00 Styles de base formulaires
+//*************************************/
+
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select,
+.selectric > .label {
+  @include transition-ease-in-out();
+  line-height: 17px;
+  width: 100%;
+  padding: 6px 5px 6px 25px;
+  border: none;
+  font-size: 12px;
+  border-bottom: 1px solid $grey-light;
+  color: $grey-blue;
+
+  // Styles placeholder
+  @include placeholder {
+    color: $grey-light;
+  }
+
+  /* Fin styles prehome */
+  .field-error & {
+    border-color: $red;
+  }
+
+  @include hover-focus-active {
+    border: none;
+    border-bottom: 1px solid $blue-base3;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: $grey-blue;
+    outline: none !important;
+    @include placeholder {
+      color: $grey-blue;
+    }
+    & + label:before {
+      color: $grey-medium;
+    }
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 0 3px 0 0;
+  vertical-align: middle;
+}
+
+select {
+  padding: 0;
+}
+
+textarea {
+  @include border-radius(5px);
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid $grey-light;
+  color: $grey-blue;
+  font-size: 12px;
+  @include placeholder {
+    color: $grey-light;
+  }
+  @include hover-focus-active {
+    border: 1px solid $blue-base3;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: $grey-blue;
+    outline: none !important;
+  }
+  + span.required {
+    right: 3px;
+  }
+}
+
+input[type="submit"],
+button {
+  //padding:5px 10px;
+  vertical-align: middle;
+  border: none;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+label {
+  display: inline-block;
+  width: auto;
+  margin: 0 5px 5px 0;
+  position: absolute;
+  left: -3px;
+  top: 1px;
+  &.labelInline {
+    text-align: right;
+  }
+  &.labelBlock {
+    display: block;
+  }
+  &:before {
+    display: inline;
+    color: $grey-light;
+    font-size: 20px;
+  }
+  // Fine tuning
+  &.ic-lock2 {
+    top: 0;
+    &:before {
+      font-size: 25px;
+    }
+  }
+  &.ic-userlog {
+    top: 1px;
+  }
+  &.ic-mail:before {
+    font-size: 22px;
+  }
+  &.ic-home {
+    top: 0;
+    &:before {
+      font-size: 25px;
+    }
+  }
+  &.ic-city {
+    top: -8px;
+    &:before {
+      font-size: 30px;
+    }
+  }
+  &.ic-phone {
+    top: -2px;
+    &:before {
+      font-size: 25px;
+    }
+  }
+}
+
+.form-group {
+  position: relative;
+  text-align: left;
+  margin: 0 0 25px 0;
+  label {
+    vertical-align: middle;
+  }
+  .register_box-form &{
+    margin:0 0 15px 0;
+  }
+}
+
+span.required {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  width: 9px;
+  font-size: 15px;
+}
+
+.field-error-content {
+  margin: 5px 0 0 0;
+  border: 1px solid lighten($red, 30%);
+  @include border-radius(6px);
+  background-color: lighten($red, 40%);
+  padding: 3px 7px;
+  list-style-type: none;
+  color: $red;
+  font-size: 11px;
+}
+
+.flash-msg {
+  left: 0;
+  text-align: center;
+  width: 100%;
+  margin: 10px 0 0 0;
+  background-color: #f3ffe4;
+  border: 1px solid $green-base;
+  border-radius: 6px;
+  padding: 10px;
+  color: $green-base;
+}
+
+.form-mentions {
+  font-size: 10px;
+  margin: 0 0 20px 0;
+}
+
+.required-legend {
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+  margin: 15px 0 0 0;
+  span.required {
+    position: static;
+    vertical-align: top;
+    display: inline-block;
+    margin: 0 8px 0 0;
+  }
+  .contact-form & {
+    text-align: left;
+    margin: 0 0 15px 0;
+  }
+}
+
+// ReCaptcha
+.recaptcha-container {
+  margin: 0 0 10px 0;
+  text-align: center;
+  .g-recaptcha {
+    display: inline-block;
+  }
+}
+
+// ICheck
+.icheckbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid $grey-lighter;
+  @include border-radius(3px);
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+  &.checked {
+    @include bgimg('check_mark.png');
+  }
+}
+
+// Selectric
+/*======================================
+  Selectric v1.11.0
+======================================*/
+
+.selectric-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.selectric-responsive {
+  width: 100%;
+}
+
+.selectric {
+  .label {
+    @include border-radius(0);
+    display: block;
+    text-align: left;
+    color: $grey-light;
+    font-weight: normal;
+    span{
+      color: $grey-blue;
+    }
+  }
+  .hdr-usr_box-select & .label {
+    border: 1px solid $grey-lighter;
+    background: $white;
+    position: relative;
+    padding:2px 30px 2px 5px;
+    width: 215px;
+    @include border-radius(5px);
+    [class^="ic-"], [class*=" ic-"] {
+      color: $blue-base3;
+      font-size: 30px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.selectric .button {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 33px;
+  height: 33px;
+  color: $blue-base3;
+  text-align: center;
+  font: 0/0 a;
+  *font: 20px/38px Lucida Sans Unicode, Arial Unicode MS, Arial;
+}
+
+.selectric .button:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 4px 0 4px;
+  border-color: transparent;
+  border-top-color: $blue-base3;
+}
+
+.selectric-focus .selectric {
+  border-color: #aaaaaa;
+}
+
+.selectric-hover .selectric {
+  border-color: #c4c4c4;
+}
+
+.selectric-hover .selectric .button {
+  color: $blue-base3;
+}
+
+.selectric-hover .selectric .button:after {
+  border-top-color: $blue-base3;
+}
+
+.selectric-open {
+  z-index: 9999;
+}
+
+.selectric-open .selectric {
+  border-color: #c4c4c4;
+}
+
+.selectric-open .selectric-items {
+  display: block;
+}
+
+.selectric-disabled {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selectric-hide-select {
+  position: relative;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
+
+.selectric-hide-select select {
+  position: absolute;
+  left: -100%;
+}
+
+.selectric-hide-select.selectric-is-native {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.selectric-hide-select.selectric-is-native select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  border: none;
+  z-index: 1;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+.selectric-input {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  outline: none !important;
+  border: none !important;
+  *font: 0/0 a !important;
+  background: none !important;
+}
+
+.selectric-temp-show {
+  position: absolute !important;
+  visibility: hidden !important;
+  display: block !important;
+}
+
+/* Items box */
+.selectric-leftcol,
+.selectric-rightcol {
+  display: table-cell;
+  vertical-align: middle;
+
+}
+
+.selectric-items {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: $white;
+  border: 1px solid $grey-lighter;
+  z-index: -1;
+  box-shadow: 0 0 10px -6px;
+}
+
+.selectric-items .selectric-scroll {
+  height: 100%;
+  overflow: auto;
+}
+
+.selectric-above .selectric-items {
+  top: auto;
+  bottom: 100%;
+}
+
+.selectric-items ul, .selectric-items li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  min-height: 20px;
+}
+
+ul .selectric-items li {
+  display: block;
+  padding: 5px 10px;
+  color: #666;
+  cursor: pointer;
+  margin: 0;
+  width: 100%;
+  color: $grey-light;
+  [class^="ic-"], [class*=" ic-"] {
+    color: $blue-base3;
+    font-size: 30px;
+  }
+}
+
+.selectric-items li {
+  padding: 0 5px;
+}
+
+.selectric-items li:hover,
+.selectric-items li.highlighted,
+.selectric-items li.selected {
+  background: $blue-base3;
+  color: $white;
+  [class^="ic-"], [class*=" ic-"] {
+    color: $white;
+  }
+}
+
+.selectric-items .disabled {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  cursor: default !important;
+  background: none !important;
+  color: #666 !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selectric-items .selectric-group .selectric-group-label {
+  font-weight: bold;
+  padding-left: 10px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: none;
+  color: #444;
+}
+
+.selectric-items .selectric-group.disabled li {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+.selectric-items .selectric-group li {
+  padding-left: 25px;
+}
+
+// MediaQueries
+
+@media screen and (max-width: 767px) {
+    .hdr-user_box .hdr-usr_box-select{
+        margin:0;
+        .selectric .label{
+            width:100%;
+        }
+    }
+}

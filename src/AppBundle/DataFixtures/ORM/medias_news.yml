@@ -1,0 +1,9 @@
+AppBundle\Entity\Media\Media:
+    image_news_{1..2}:
+        name:           'News <current()>'
+        context:        '@context_default'
+        category:       '@category_default'
+        providerName:   sonata.media.provider.image
+#        binaryContent: <image('<{kernel.root_dir}>/../src/AppBundle/DataFixtures/ORM/images', '640', '480', 'business')>
+        binaryContent: '<randomElement(array("<{kernel.root_dir}>/../src/AppBundle/DataFixtures/ORM/images/news/news-men.jpg", "<{kernel.root_dir}>/../src/AppBundle/DataFixtures/ORM/images/news/news-women.jpg"))>'
+        enabled:        true

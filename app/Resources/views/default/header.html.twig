@@ -1,0 +1,43 @@
+<header class="clearfix">
+    <div class="hdr-menu_toggle ic-menu"></div>
+    <div class="hdr-profile_toggle ic-userlog"></div>
+    {% if isHome is defined %}
+        <h1 class="hdr-logo text-hide">Biogaran.pro Espace officine</h1>
+    {% else %}
+        <div class="hdr-logo text-hide">Biogaran.pro Espace officine</div>
+    {% endif %}
+    <ul class="hdr-user_box clearfix">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li class="hdr-usr_box-logout-mobile-header">
+                <div class="ic-userlog"></div>
+                <div class="logout-mobile-header-txt">Mon Profil</div>
+                <div class="ic-cross logout-mobile-header-ic"></div>
+            </li>
+            <li class="hdr-usr_box-hello">
+                Bonjour, <span>{{ app.user.pharmacien.civilite }} {{ app.user.pharmacien.nom }}</span>
+            </li>
+            <li class="hdr-usr_box-profile">
+                <a href="{{ path('app_profil') }}">Mon profil</a>
+            </li>
+
+            <li class="hdr-usr_box-select">
+                {{ officine_selector(app.user) }}
+            </li>
+
+            {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                <li class="hdr-usr_box-profile">
+                    <a href="{{ path('admin_app_pharmacien_list', {'_connect_as': '_exit'}) }}">Redevenir admin</a>
+                </li>
+            {% endif %}
+
+            <li class="hdr-usr_box-logout ">
+                <a href="{{ path('fos_user_security_logout') }}">
+                    <span class="ic-logout"></span>
+                    <span class="logout-mobile-txt hc-block-footerlink">Déconnexion</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="hdr-user_box-login"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+        {% endif %}
+    </ul>
+</header>

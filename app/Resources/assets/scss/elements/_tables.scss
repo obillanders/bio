@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+
+.editorial-content table{
+    width:100%;
+    margin:0 0 25px 0;
+    thead{
+        background-color: $grey-blue;
+        color: $white;
+        text-transform: uppercase;
+        font-size:12px;
+    }
+    th{
+        padding:10px 20px;
+        &:first-child{
+            border-left:4px solid $grey-blue;
+        }
+        &:last-child{
+            border-right:1px solid $grey-blue;
+        }
+    }
+    tbody{
+        td{
+            padding:13px 20px;
+            border-top:1px solid $grey-lighter;
+            border-bottom:1px solid $grey-lighter;
+            &:first-child{
+                font-family:'bentonsans-ultracondensed';
+                font-size:18px;
+                color: $black;
+            }
+            &:last-child{
+                border-right:1px solid $grey-lighter;
+            }
+        }
+        tr.odd{
+            background-color: $blue-light;
+            td:first-child{
+                border-left:4px solid $blue-base2;
+            }
+        }
+        tr.even{
+            td:first-child{
+                border-left:4px solid $blue-base;
+            }
+        }
+    }
+}

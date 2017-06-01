@@ -1,0 +1,43 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block base_row %}
+    {% if attr is empty or attr.placeholder is not defined  %}
+        {% set attr = attr|merge({'placeholder': name}) %}
+    {% endif %}
+
+    {% if label_attr is empty or label_attr.class is not defined %}
+        {% set label_attr = label_attr|merge({'class': 'ic-roundedsquare'}) %}
+    {% endif %}
+
+    <div class="form-group {% if errors is not empty %}field-error{% endif %}">
+        {{ form_widget(form, {'attr': attr}) }}
+        {% if required %}<span class="required ">*</span>{% endif %}
+        {{ form_label(
+            form,
+            '',
+            {'label_attr': {'class': 'text-hide '~label_attr.class}})
+        }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock base_row %}
+
+{% block text_row %}
+    {{ block('base_row') }}
+{% endblock text_row %}
+
+{% block choice_row %}
+    {% if not expanded and not multiple %}
+        {{ block('base_row') }}
+    {% endif %}
+{% endblock choice_row %}
+
+{% block form_errors %}
+    {%- if errors|length > 0 -%}
+        <ul class="field-error-content">
+            {%- for error in errors -%}
+                <li>{{ error.message }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+{% endblock form_errors %}
+

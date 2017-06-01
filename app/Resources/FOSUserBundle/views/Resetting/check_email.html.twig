@@ -1,0 +1,22 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block prehome_right_content %}
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    <div class="connexion_box request-password">
+        <span class="ic-lock"></span>
+        <span class="roundedsquare"></span>
+        <h3 class="connexion_box-style-title">
+            <span>Connexion</span><br />
+            Mot de passe perdu
+        </h3>
+
+        <p class="cb-info">
+            Un email a été envoyé. Il contient un lien afin de changer votre mot de passe.<br />
+            Si vous n'avez pas reçu d'email, vérifiez dans votre dossier de spam.
+        </p>
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-pink">Retour</a>
+    </div>
+
+{% endblock %}
+

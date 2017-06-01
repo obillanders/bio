@@ -1,0 +1,112 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+
+imports:
+    - { resource: 'parameters/' }
+    - { resource: 'services/' }
+
+parameters:
+
+services:
+    app.csv_encoder:
+        class: AppBundle\Import\CustomCsvEncoder
+        tags:
+                - { name: serializer.encoder, public: false }
+    app.success_handler:
+        class: AppBundle\Security\SuccessHandler
+        arguments:
+            - '@router'
+            - '@app.officine_selector'
+            - '@app.manager.user'
+
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    app.form.resetting:
+            class: AppBundle\Form\RegistrationType
+            tags:
+                - { name: form.type, alias: app_resetting_form }
+
+    app.user.listener:
+        class: AppBundle\EventListener\UserCreationListener
+        arguments:
+            - 'ROLE_OFFICINE_OWNER'
+            - '@app.manager.user'
+            - '@app.manager.rdi'
+            - '@router'
+            - '@session'
+        tags:
+            - { name: kernel.event_listener, event: fos_user.registration.completed, method: onNewUser }
+
+    app.mail.listener:
+        class: AppBundle\EventListener\MailListener
+        arguments:
+            - '@fos_user.mailer'
+        tags:
+            - { name: kernel.event_listener, event: app.resetting.confirm, method: onUserPasswordResetted }
+
+    app.menu_builder:
+        class:  AppBundle\Menu\MenuBuilder
+        arguments:
+            - '@knp_menu.factory'
+        tags:
+            - {name: knp_menu.menu_builder, method: createMainMenu, alias: main}
+            - {name: knp_menu.menu_builder, method: createPharmacienMenu, alias: nridInterlocuteur}
+
+    app.rdi_mail_handler:
+        class: AppBundle\Rdi\RdiMailHandler
+        arguments:
+            - '@twig'
+            - '@mailer'
+            - '%rdi%'
+        tags:
+            - { name: app.rdi_handler, handler_type: mail }
+
+    app.rdi_api_handler:
+        class: AppBundle\Rdi\RdiApiHandler
+        arguments:
+            - '@jms_serializer'
+            - '@guzzle.client.api_biogaran_rdi'
+        tags:
+            - { name: app.rdi_handler, handler_type: api }
+
+    app.result_factory:
+        class: AppBundle\Service\ResultFactory
+
+    app.util.inflector.noop:
+        class: AppBundle\Util\Inflector\NoopInflector
+
+    app.exception.api_listener:
+        class: AppBundle\EventListener\ApiExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException  }
+
+    app.api:
+        class: AppBundle\Service\ApiService
+        arguments:
+            - '@app.manager.pharmacien'
+            - '@app.manager.user'
+            - '@app.manager.rdi'
+
+    app.user.password_helper:
+        class: AppBundle\Service\UserPasswordHelper
+        arguments:
+            - '@event_dispatcher'
+            - '@fos_user.util.token_generator'
+            - '%fos_user.resetting.retry_ttl%'
+
+    app.officine_selector:
+        class: AppBundle\Service\OfficineSelectorService
+        arguments:
+          - '@app.manager.officine'
+          - '@session'
+
+    app.mailer:
+        class: AppBundle\Service\MailService
+        parent: 'fos_user.mailer'
+        public: true
+        arguments:
+            - '%app_mail_adresses%'
+

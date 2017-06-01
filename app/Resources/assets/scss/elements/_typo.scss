@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+///*************************************
+//* @_00 Styles de base typo
+//*************************************/
+
+// lissage des typos sur mac
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: bentonsans-book, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.8em;
+    line-height: 1.2em;
+}
+
+.main-content h1 {
+    display: table;
+    width:calc(100% + 100px);
+    margin:0 0 0 -100px;
+    padding: 20px 20px 20px 0;
+    text-align: left;
+    font-size: 35px;
+    color: $white;
+    .page & {
+        background-color: $blue-base2;
+        [class^="ic-"], [class*=" ic-"] {
+            width:209px;
+            font-size: 190px;
+            color: $white;
+            vertical-align: middle;
+        }
+    }
+    div{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .h1-txt{
+        display: block;
+        margin:0 0 10px 0;
+    }
+    .h1-soustitre{
+        display: block;
+        font-size:16px;
+        line-height:1.5em;
+    }
+}
+
+.editorial-content h2 {
+    margin: 0 0 20px 0;
+    font-size: 19px;
+    color: $black;
+    span {
+        display: block;
+    }
+    .surtitre {
+        text-transform: uppercase;
+        color: $blue-base2;
+        font-size: 10px;
+    }
+    .soustitre {
+        font-size: 12px;
+        color: $grey-light;
+    }
+}
+
+h3, .styleH3 {
+    font-size:22px;
+}
+
+h4, .styleH4 {
+    font-size:17px;
+}
+
+h5, .styleH5 {
+
+}
+
+h6, .styleH6 {
+
+}
+
+p {
+    margin: 0 0 25px 0;
+    line-height: 1.7em;
+}
+
+ul, ol, dl {
+    margin-top: 0;
+    padding-left: 0;
+    list-style-position: inside;
+    margin: 0 0 25px 0;
+}
+
+ul {
+    list-style-type: disc;
+    .editorial-content & {
+        list-style: none;
+        li {
+            position: relative;
+            padding: 0 0 0 35px;
+
+            &:before {
+                content: "\e91e";
+                font-family: 'icons' !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: block;
+                color: $blue-base2;
+            }
+        }
+    }
+}
+
+li {
+    margin: 0 0 5px 0;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a {
+    color: $blue-base2;
+    @include transition-ease-in-out();
+    @include hover-focus-active {
+        text-decoration: none;
+    }
+}
+strong{
+    color:$black;
+}
+.ftr-h4 {
+    margin: 0 0 10px 0;
+    color: $grey-blue;
+    font: normal 15px/1em bentonsans-medium, sans-serif;
+    a {
+        color: $grey-blue;
+    }
+}

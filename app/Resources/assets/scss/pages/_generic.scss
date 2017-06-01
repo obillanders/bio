@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.editorial-content{
+    padding:40px 0 0 10vw;
+    width:80vw;
+    max-width:900px;
+}
+.h1-container{
+    overflow: hidden;
+}
+.chapeau{
+    margin:0 0 40px 0;
+    font-size:18px;
+    font-style: italic;
+    line-height:1.5em;
+}
+
+@media screen and (max-width: 767px) {
+    .breadcrumb{
+        padding:15px 10px 10px 10px;
+    }
+    .editorial-content{
+        padding:40px 10px 0 10px;
+        width:100%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .page .main-content h1{
+        font-size:28px;
+        margin-left:-70px;
+        .ic-actus2{
+            width:150px;
+            font-size:140px;
+        }
+    }
+}

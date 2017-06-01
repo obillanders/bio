@@ -1,0 +1,221 @@
+@charset "UTF-8";
+
+header {
+  //height: 50px;
+  background-color: $white;
+  padding-left: calc(#{$menuWidth} + 17px);
+  margin: 0 0 20px 0;
+    .page &{
+        margin:0;
+    }
+}
+
+.hdr-menu_toggle,
+.hdr-profile_toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.hdr-logo {
+  width: 293px;
+  height: 26px;
+  float: left;
+  margin: 12px 0 0 0;
+  @include bgimg('hdr-logo.png');
+}
+
+.hdr-user_box {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px 0 0;
+  }
+  .ic-logout {
+    color: $grey-lighter;
+    font-size: 30px;
+    line-height: 50px;
+    @include hover-focus-active {
+      color: $grey-medium;
+    }
+  }
+  .logout-mobile-txt{
+    display: none;
+  }
+  .hdr-usr_box-logout-mobile-header{
+    display: none;
+  }
+}
+
+.hdr-usr_box-hello {
+  color: $grey-light;
+  position: relative;
+  span {
+    color: $grey-blue;
+  }
+  /*&:before {
+    position: absolute;
+    left: -40px;
+    top: -8px;
+    content: "";
+    display: block;
+    background-color: #d2e4e9;
+    width: 33px;
+    height: 33px;
+    @include border-radius(50%);
+  }*/
+}
+
+.hdr-usr_box-profile {
+  a {
+    color: $grey-blue;
+    text-decoration: underline;
+  }
+}
+
+.hdr-user_box-login {
+  line-height: 50px;
+}
+
+
+/* Media queries */
+@media screen and (max-width: 1100px) {
+  .hdr-logo{
+    float: none;
+  }
+  .hdr-user_box{
+    float: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  header {
+    padding: 10px 20px;
+    margin: 0 -10px 10px -10px;
+    text-align: center;
+    height:auto;
+  }
+
+  .hdr-logo {
+    display: inline-block;
+    vertical-align: bottom;
+    @include bgimg('mobile/hdr-logo-mobile.png');
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    width: 150px;
+    height: 34px;
+    float: none;
+    margin: 0;
+  }
+  .hdr-menu_toggle {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 40px;
+    float: left;
+    color: $black;
+  }
+  .hdr-profile_toggle {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 40px;
+    float: right;
+    color: $black;
+  }
+
+  /* User box */
+  .hdr-user_box {
+    @include transition-ease-in-out();
+    position: fixed;
+    top: 0;
+    right: -50vw;
+    z-index: 1;
+    width: 50vw;
+    background-color: $blue-base3;
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 45px 0;
+    li {
+      display: block;
+      margin: 0 20px 0 0;
+    }
+    .ic-logout {
+      color: $grey-lighter;
+      font-size: 30px;
+      line-height: 50px;
+      @include hover-focus-active {
+        color: $grey-medium;
+      }
+    }
+    .logout-mobile-txt {
+      display: block;
+    }
+    .ic-logout {
+      display: none;
+    }
+    .hdr-usr_box-logout-mobile-header {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      div {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .ic-userlog {
+        background-color: $grey-blue;
+        width: 40px;
+        height: 60px;
+        font-size: 38px;
+        color: $blue-base3;
+      }
+      .logout-mobile-header-txt {
+        padding: 0 0 0 15px;
+        font: normal 25px/28px bentonsans-ultracondensed, sans-serif;
+        text-transform: uppercase;
+        color: $white;
+        text-align: left;
+      }
+      .ic-cross {
+        color: $white;
+        font-size: 25px;
+        width: 50px;
+        cursor: pointer;
+      }
+    }
+    .hdr-usr_box-hello,
+    .hdr-usr_box-profile,
+    .hdr-usr_box-select{
+      padding: 15px 15px 0 15px;
+      color: $white;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .hdr-usr_box-hello span,
+    .hdr-usr_box-profile a {
+      color: $white;
+    }
+    .hdr-usr_box-logout {
+      margin: 0;
+      a {
+        display: block;
+        background-color: $grey-blue;
+        color: $white;
+      }
+    }
+  }
+  .hdr-user_box.hdr-user_box-mobile-open{
+    right:0;
+  }
+  /* User box */
+}
+
+@media screen and (max-width: 400px) {
+  .hdr-user_box{
+    width:70vw;
+    right:-70vw;
+  }
+}
+
+

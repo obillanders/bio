@@ -1,0 +1,704 @@
+@charset "UTF-8";
+
+.main-content {
+    padding: 0 0 0 calc(#{$menuWidth} - 1px);
+}
+
+.hc-col {
+    width: 34.54%;
+    margin: 0 0 0 1.85%;
+    float: left;
+    &:last-child {
+        width: 25.3%;
+    }
+}
+
+/* Standard block */
+
+.hc-block {
+    margin: 0 0 20px 0;
+    background-color: $white;
+    padding: 0 0 30px 0;
+    position: relative;
+}
+
+.hc-block-roundedsquare {
+    @include rnd_square_ic(2px, $blue-base, 7px);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 35px;
+}
+
+.hc-block-header {
+    display: table;
+    width: 85%;
+    [class^="ic-"], [class*=" ic-"] {
+        display: table-cell;
+        vertical-align: middle;
+        width: 56px;
+        height: 90px;
+        font-size: 50px;
+        text-align: center;
+        color: $white;
+    }
+}
+
+.hc-block-title {
+    display: table-cell;
+    font: normal 25px/28px bentonsans-ultracondensed, sans-serif;
+    text-transform: uppercase;
+    color: $grey-medium;
+    vertical-align: middle;
+    padding: 0 0 0 13px;
+
+    span {
+        display: block;
+    }
+}
+
+.hc-block-content {
+    margin: 0 10px 20px 69px;
+    p, div {
+        margin: 0 0 10px 0;
+    }
+}
+
+.hc-block-content-top-alone {
+    margin: 0 90px 10px 0;
+    font-size: 13px;
+    line-height: 1.4em;
+    color: $grey-blue;
+    font-weight: bold;
+
+}
+
+.hc-block-content-bottom-alone {
+    margin-right: 90px;
+}
+
+.hc-block-content-top {
+    font-size: 13px;
+    line-height: 1.3em;
+    color: $grey-blue;
+    font-weight: bold;
+}
+
+.hc-block-content-sep {
+    height: 1px;
+    background-color: $grey-light;
+    width: 50%;
+}
+
+.hc-block-content-bottom {
+    font-size: 12px;
+    color: $grey-blue-light;
+}
+
+.hc-block-footerlink {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $grey-blue;
+    height: 30px;
+    font: normal 10px/30px bentonsans-medium, sans-serif;
+    width: 50%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $white;
+    @include hover-focus-active {
+        color: $white;
+        background-color: darken($grey-blue, 10%);
+    }
+}
+
+/* Image block */
+.hc-block-typeimg {
+    display: table;
+    table-layout: fixed;
+    background-color: transparent;
+    padding: 0;
+}
+
+.hc-block-typeimg-leftcol,
+.hc-block-typeimg-rightcol {
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+    .hc-block-content {
+        margin: 0;
+        padding: 20px;
+    }
+}
+
+.hc-block-typeimg-leftcol {
+    background-color: $white;
+}
+
+.hc-block-typeimg-rightcol {
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    .hc-block-footerlink {
+        width: 100%;
+    }
+}
+
+/************** Colonne 1*/
+
+.hc-block-actus {
+    .hc-block-roundedsquare {
+        border-color: $orange-base;
+    }
+    .hc-block-title {
+        height: 90px;
+        span {
+            color: $orange-base;
+        }
+    }
+    ul {
+        li {
+            list-style: none;
+            display: inline-block;
+            padding: 20px;
+        }
+        a {
+            display: block;
+            &:hover .hc-block-news-more {
+                background-color: $orange-base;
+                color: $white;
+                border-color: $orange-base;
+            }
+        }
+
+        .hc-block-news-more {
+            @include transition-ease-in-out();
+            border: 1px solid #D9E0EA;
+            color: $grey-light;
+            border-radius: 15px;
+            -webkit-background-clip: padding-box;
+            display: block;
+            width: 32px;
+            height: 20px;
+            text-align: center;
+        }
+        .media-body {
+            color: black;
+            span {
+                color: $grey-light;
+                font-size: 0.8em;
+            }
+            p {
+                margin: 0 0 10px 0;
+            }
+        }
+
+        .media-left {
+            .media-left-inside {
+                width: 77px;
+                height: 77px;
+                overflow: hidden;
+            }
+            img {
+                max-width: 77px;
+            }
+        }
+        .media-right {
+            vertical-align: bottom;
+        }
+
+    }
+}
+
+.hc-block-ecata {
+    border-left: 2px solid $purple-base;
+    overflow: hidden;
+    .hc-block-typeimg-leftcol {
+        width: 40%;
+    }
+    .hc-block-typeimg-rightcol {
+        width: 60%;
+    }
+    .hc-block-content-top, .hc-block-content-sep {
+        margin-bottom: 5px;
+    }
+    .hc-block-content-bottom {
+        margin-bottom: 0px;
+    }
+    .hc-block-title span {
+        color: $purple-base;
+    }
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $purple-base;
+    }
+
+    .hc-block-typeimg-rightcol {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfa2e0+0,782fcb+100 */
+        background: -moz-linear-gradient(45deg, #bfa2e0 0%, #782fcb 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, #bfa2e0 0%, #782fcb 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, #bfa2e0 0%, #782fcb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        border-left: 30px solid $white;
+        img {
+            position: absolute;
+            width: 120%;
+            bottom: 10%;
+            right: 0;
+        }
+    }
+    .hc-block-footerlink {
+        background-color: $purple-base;
+        @include hover-focus-active {
+            color: $white;
+            background-color: darken($purple-base, 10%);
+        }
+    }
+}
+
+.hc-block-remis {
+    border-left: 2px solid $blue-base;
+    .hc-block-roundedsquare {
+        border-color: $blue-base;
+    }
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $blue-base;
+    }
+    .hc-block-title span {
+        color: $blue-base;
+    }
+}
+
+/************** Colonne 2 */
+.hc-block-indicateurs {
+    .hc-block-roundedsquare {
+        border-color: $blue-base;
+    }
+    [class^="ic-"], [class*=" ic-"] {
+        color: $grey-light;
+        font-size: 57px;
+    }
+    span {
+        color: $blue-base;
+    }
+    .hc-block-indicateurs-content {
+        padding-left: 15px;
+    }
+}
+
+.hc-block-contrats {
+    border-left: 2px solid $blue-base;
+    .hc-block-roundedsquare {
+        border-color: $blue-base;
+    }
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $blue-base;
+    }
+    .hc-block-title span {
+        color: $blue-base;
+    }
+    .hc-bloc-contrats-bulle {
+        vertical-align: middle;
+        margin: 0;
+        background: url('../img/bulle-contrat.png') no-repeat;
+        background-position: top left;
+        height: 30px;
+        font-size: 1.6em;
+        width: 40px;
+        text-align: center;
+        display: inline-block;
+    }
+    .hc-block-content-bottom {
+        margin: 0;
+        vertical-align: middle;
+        display: inline-block;
+        max-width: 103px;
+        line-height: 1.4em;
+    }
+}
+
+.hc-block-srv_patients {
+    border-left: 2px solid $green-base;
+    padding: 0;
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $green-base;
+    }
+    .hc-block-title span {
+        color: $green-base;
+    }
+    .hc-block-header {
+        //width: 52%;
+    }
+    .hc-block-content {
+        /*    width: 50%;
+            margin: 0;
+            padding: 3% 3% 0 3%;
+            float: left;*/
+    }
+    .hc-block-typeimg-rightcol {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ccde8d+0,92b90d+100 */
+        background: #ccde8d; /* Old browsers */
+        background: -moz-linear-gradient(45deg, #ccde8d 0%, #92b90d 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, #ccde8d 0%, #92b90d 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, #ccde8d 0%, #92b90d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccde8d', endColorstr='#92b90d', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+        overflow: hidden;
+        img {
+            max-width: 100%;
+        }
+    }
+    .ic-services {
+        font-size: 2.2em;
+    }
+    .hc-block-footerlink {
+        background-color: $green-base;
+    }
+}
+
+/************** Colonne 3 */
+.hc-block-delegue {
+    border-left: 2px solid $blue-base;
+    padding-bottom: 5px;
+    .hc-block-roundedsquare {
+        border-color: $blue-base;
+    }
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: lighten($blue-base, 45%);
+        color: $blue-base;
+    }
+    .hc-block-title span {
+        color: $blue-base;
+    }
+    .hc-block-delegue-name {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+    .hc-block-delegue-tel {
+        margin: 0 0 0 -24px;
+        span {
+            width: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            background-color: transparent;
+            font-size: 2em;
+        }
+    }
+}
+
+.hc-block-scli {
+    background-color: $blue-base;
+    text-align: center;
+    .hc-block-title {
+        display: block;
+        padding: 20px 0 0 0;
+        margin: 0 0 15px 0;
+        color: $white;
+        text-align: center;
+    }
+    .hc-block-footerlink {
+        width: 70%;
+    }
+    .ic-scli {
+        color: $white;
+        font-size: 120px;
+    }
+    .hc-block-scli-txt {
+        width: 60%;
+        margin: 10px auto 0 auto;
+        padding: 10px 0 40px 0;
+        border-top: 1px solid darken($blue-base, 7%);
+        font-size: 13px;
+        color: lighten($blue-base, 35%);
+    }
+}
+
+.hc-block-scli-pb {
+    background-color: $blue-base;
+    text-align: center;
+    padding-bottom: 15px;
+    .hc-block-title {
+        display: block;
+        padding: 20px 5px 0 5px;
+        margin: 0 0 15px 0;
+        color: $white;
+        text-align: center;
+        span{
+            color: lighten($blue-base, 28%);
+        }
+    }
+
+    .hc-block-scli-nb {
+        font-size: 24px;
+        color: $white;
+    }
+    .hc-block-scli-pb-container{
+        @include border-radius(5px);
+        background-color: lighten($blue-base, 20%);
+        width:80%;
+        margin:auto;
+        padding:5px 0;
+        .hc-block-scli-txt {
+            margin:0;
+            padding:0 10px;
+            font-size: 13px;
+            color: $white;
+        }
+        .hc-block-scli-nb{
+            color: darken($blue-base3, 10%);
+            white-space: nowrap;
+            [class^="ic-"], [class*=" ic-"]{
+                position: relative;
+                top:-2px;
+                padding:0 5px 0 0;
+                color: $white;
+                font-size:30px;
+                vertical-align: middle;
+            }
+        }
+    }
+    .hc-block-scli-note{
+        margin:5px 0 0 0;
+        color: darken($blue-base3, 10%);
+        font-size:12px;
+    }
+}
+
+.hc-block-formations {
+    border-left: 2px solid $blue-base2;
+    .hc-block-roundedsquare {
+        border-color: $blue-base2;
+    }
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $blue-base2;
+    }
+    .hc-block-title {
+        span {
+            color: $blue-base2;
+        }
+    }
+    .hc-block-footerlink {
+        width: 70%;
+    }
+    /*.hc-block-content{
+      padding-top: 30px;
+    }*/
+    .hc-block-content-bottom {
+        padding-bottom: 20px;
+    }
+}
+
+.hc-block-satisfaction {
+    background-color: $pink-base;
+    text-align: center;
+    img {
+        display: inline-block;
+    }
+    .hc-block-title {
+        display: block;
+        padding: 20px 10px;
+        margin: 0;
+        text-transform: none;
+        color: $white;
+        text-align: center;
+        font: normal 17px/1em bentonsans-medium, sans-serif;
+    }
+    .hc-block-satisfaction-note {
+        color: $white;
+        font-size: 4em;
+        text-align: center;
+    }
+    .hc-block-satisfaction-content {
+        color: $white;
+        font-size: 0.9em;
+        text-align: center;
+        padding: 0 10px 10px 15px;
+    }
+    .hc-block-footerlink {
+        width: 100%;
+        background-color: darken($pink-base, 5%);
+        @include hover-focus-active {
+            color: $white;
+            background-color: darken($pink-base, 10%);
+        }
+    }
+}
+
+/* Media queries */
+@media screen and (max-width: 1300px) {
+    .hc-block-ecata {
+        .hc-block-content {
+            padding-right: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .hc-block-scli-pb {
+        .hc-block-scli-pb-container{
+            .hc-block-scli-nb {
+                font-size:20px;
+                [class^="ic-"], [class*=" ic-"]{
+                    padding:0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .hc-col-3 {
+        .hc-block-content {
+            margin: 20px 10px;
+        }
+        .hc-block-delegue .hc-block-content {
+            margin: 10px 10px 10px 40px;
+        }
+    }
+    .hc-block-actus ul li {
+        padding: 10px 20px;
+    }
+    .hc-block-content-top-alone,
+    .hc-block-content-bottom-alone {
+        margin-right: 20px;
+    }
+    .hc-block-footerlink {
+        font-size: 9px;
+        width: 60%;
+        height: 35px;
+        line-height: 35px;
+        .hc-block-scli &,
+        .hc-block-formations & {
+            width: 60%;
+        }
+    }
+    .hc-block-ecata, .hc-block-srv_patients {
+        .hc-block-typeimg-leftcol {
+            display: block;
+            width: 100%;
+        }
+        .hc-block-typeimg-rightcol {
+            display: block;
+            width: 100%;
+            border: none;
+            background: $white none;
+            text-align: right;
+            img {
+                display: none;
+            }
+            .hc-block-footerlink {
+                position: static;
+                display: inline-block;
+                width: 60%;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .main-content {
+        padding: 0 0 0 86px;
+    }
+    .hc-block-scli-pb {
+        .hc-block-scli-pb-container{
+            .hc-block-scli-nb {
+                font-size:15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main-content {
+        padding: 0;
+    }
+    .hc-col {
+        width: 100%;
+        float: none;
+        margin: 0;
+    }
+    .hc-block-remis,
+    .hc-block-srv_patients,
+    .hc-block-formations,
+    .hc-block-satisfaction {
+        display: none;
+    }
+    .hc-col:last-child,
+    .hc-block-ecata {
+        width: 100%;
+    }
+
+    .hc-block-delegue {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        .hc-block-header {
+            display: table-cell;
+            width: 40%;
+        }
+        .hc-block-content {
+            display: table-cell;
+            vertical-align: middle;
+            width: 60%;
+            .hc-block-content-top {
+                margin: 0 0 0 24px;
+            }
+            .hc-block-delegue-tel {
+                margin: 0;
+            }
+        }
+    }
+
+    .hc-block-scli {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        .hc-block-scli-mobile-col {
+            display: table-cell;
+            vertical-align: top;
+            width: 50%;
+
+        }
+        .hc-block-scli-txt {
+            margin: 0 0 10px 0;
+            border: none;
+            padding: 20px 0 0 0;
+            text-align: left;
+            font-size: 14px;
+            line-height:1.2em;
+        }
+        .hc-block-title {
+            float: right;
+            text-align: left;
+            width: 60%;
+            padding:20px 5px 0 5px;
+        }
+        .ic-scli {
+            font-size: 60px;
+            padding: 15px 0 0 0;
+            float: left;
+            width: 40%;
+            text-align: right;
+        }
+    }
+
+    .hc-block-footerlink {
+        width: 50%;
+        .hc-block-scli &,
+        .hc-block-formations & {
+            width: 50%;
+        }
+    }
+
+    .hc-block-ecata .hc-block-typeimg-rightcol .hc-block-footerlink {
+        width: 50%;
+    }
+
+    .hc-block-actus ul li:nth-child(3),
+    .hc-block-actus ul li:nth-child(4) {
+        display: none;
+    }
+    .hc-block-scli-pb .hc-block-scli-pb-container .hc-block-scli-nb{
+        font-size:18px;
+    }
+}

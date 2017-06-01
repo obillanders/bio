@@ -1,0 +1,160 @@
+{% extends ':default:index.html.twig' %}
+
+{% block content %}
+    <div class="h1-container">
+        <h1>
+            <div class="ic-userprofile h1-col"></div>
+            <div class="h1-col">
+                <span class="h1-txt">Mon profil</span>
+                <span class="h1-soustitre">Gestion des identifiants, mots de passe, préférences de communications...</span>
+                <span class="h1-soustitre">Modifiez depuis cet espace toutes les informations relatives à votre compte.</span>
+            </div>
+        </h1>
+    </div>
+
+    <div>
+        <div class="hc-col hc-col-1">
+            <div class="hc-block profil-block-mon_compte">
+                <div class="hc-block-header">
+                    <div class="ic-userprofile"></div>
+                    <h2 class="hc-block-title">Mon <span>compte</span></h2>
+                </div>
+                <div class="hc-block-content">
+                    <ul>
+                        <li class="profil-block-mon_compte-nom">
+                            <span>Prénom</span>
+                            {{ app.user.pharmacien.prenom }}
+                        </li>
+                        <li class="profil-block-mon_compte-prenom">
+                            <span>Nom</span>
+                            {{ app.user.pharmacien.nom }}
+                        </li>
+                        <li class="profil-block-mon_compte-email">
+                            <span>Email</span>
+                            {{ user.email }}
+                        </li>
+                        <li class="profil-block-mon_compte-optin">
+                            <input type="checkbox" name="optin" value="" {% if user.offres == 1 %}checked="checked"{% endif %} /> <span>Je souhaite recevoir les dernières informations de la part de Biogaran</span>
+                        </li>
+                    </ul>
+                </div>
+                <a href="" class="hc-block-footerlink">
+                    Modifier mes infos
+                </a>
+            </div>
+
+            <div class="hc-block profile-block-change_password">
+                <div class="hc-block-header">
+                    <div class="ic-lock3"></div>
+                    <h2 class="hc-block-title">Mon <span>mot de passe</span></h2>
+                </div>
+                <div class="hc-block-content">
+                    contenu
+                    {#<p class="hc-block-content-top-alone">
+                        Profitez d’outils pratiques qui facilitent votre quotidien.
+                    </p>
+                    <div class="hc-block-content-sep"></div>
+                    <p class="hc-block-content-bottom-alone">
+                        Brochures patients, outils
+                        d’équivalence...
+                    </p>#}
+                </div>
+                <a href="" class="hc-block-footerlink">
+                    Modifier mon mot de passe
+                </a>
+            </div>
+        </div>
+
+        <div class="hc-col hc-col-1">
+            <div class="hc-block profile-block-officines">
+                <div class="hc-block-header">
+                    <div class="ic-cross2"></div>
+                    <h2 class="hc-block-title">Mes <span>officines</span></h2>
+                </div>
+                <div class="hc-block-content">
+                    {% for officine in listOfficines %}
+                        <div class="profile-block-officines-detail">
+                            <div class="pb-officines-header">
+                                <div class="pb-officines-header-ic ic-city"></div>
+                                <div class="pb-officines-header-txt">
+                                    {{ officine.nomPharmacie }}
+                                </div>
+                            </div>
+                            <div class="pb-officines-content-line">
+                                <div class="pb-officines-content-ic ic-pointer"></div>
+                                <div class="pb-officines-content-txt">
+                                    {{ officine.localite }}
+                                </div>
+                            </div>
+                            <div class="pb-officines-content-line">
+                                <div class="pb-officines-content-ic ic-phone"></div>
+                                <div class="pb-officines-content-txt">
+                                    {{ officine.telephoneFixe }}
+                                </div>
+                            </div>
+                            <div class="pb-officines-footer">
+                                <div class="pb-officines-footer-leftcol">
+                                    <div class="pb-officines-footer-ic ic-userlog"></div>
+                                    <div class="pb-officines-footer-txt">
+                                        Mon <span>délégué</span>
+                                    </div>
+                                </div>
+                                {% if officine.pmp |length %}
+                                    <div class="pb-officines-footer-rightcol">
+                                        <div class="pb-officines-footer-nom_pmp">
+                                            {{ officine.pmp }}
+                                        </div>
+                                        <div class="pb-officines-footer-nb_pmp">
+                                            <span class="ic-phone"></span>
+                                            <a href="tel:{{ officine.telephonePmp }}">
+                                                {{ officine.telephonePmp }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="" class="hc-block-footerlink">
+                    Modifier
+                </a>
+            </div>
+        </div>
+
+        <div class="hc-col hc-col-1">
+            <div class="hc-block hc-block-scli clearfix">
+                <div class="hc-block-scli-mobile-col">
+                    <h2 class="hc-block-title">
+                        Besoin d'aide ?
+                    </h2>
+                    <div class="ic-scli"></div>
+                </div>
+                <div class="hc-block-scli-mobile-col">
+                    <p class="hc-block-scli-txt">
+                        <span>Consultez le service client en ligne</span>
+                    </p>
+                </div>
+                <a href="" class="hc-block-footerlink">
+                    Une question ?
+                </a>
+            </div>
+            <div class="hc-block hc-block-scli-pb clearfix">
+                <h2 class="hc-block-title">
+                    Vous rencontrez un problème
+                    <span>avec votre compte client ?</span>
+                </h2>
+                <div class="hc-block-scli-pb-container">
+                    <p class="hc-block-scli-txt">
+                        Contactez votre service client :
+                    </p>
+                    <a href="tel:{{ app_config.scli_number }}" class="hc-block-scli-nb"><span class="ic-phone"></span>{{ app_config.scli_number }}</a>
+                </div>
+                <p class="hc-block-scli-note">
+                    Prix d'un appel local
+                </p>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

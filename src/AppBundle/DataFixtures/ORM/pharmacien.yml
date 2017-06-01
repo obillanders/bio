@@ -1,0 +1,12 @@
+AppBundle\Entity\Pharmacien:
+    pharmacien_{2..10}:
+        nridInterlocuteur: '<randomNumber(5)><randomNumber(5)><randomNumber(5)>'
+        nom: '<lastName()>'
+        prenom: '<firstName()>'
+        sexe: '50%? "f" : "m"'
+        civilite: '50%? <titleMale()> : <titleFemale()>'
+        titulaire: '50%? "oui" : "non"'
+        dateNaissance: '<dateTime("now")>'
+        email: '50%? @user1->email : @user2->email'
+        telephoneMobile: '<e164PhoneNumber()>'
+        numeroRpps: '<randomNumber(5)>'

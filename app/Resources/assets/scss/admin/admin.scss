@@ -1,0 +1,59 @@
+@charset "UTF-8";
+@import '../utilities/_variables.scss';
+@import '../utilities/_mixin.scss';
+
+a{
+  color: $blue-base;
+  @include transition-ease-in-out();
+  @include hover-focus-active{
+    color: darken($blue-base, 10%);
+  }
+}
+.btn-link{
+  color: $blue-base;
+}
+.logo{
+  img{
+    max-width:100%;
+    height:auto;
+  }
+  span{
+    display: none;
+  }
+}
+
+.sonata-bc .sidebar .sidebar-menu>li{
+  @include hover-focus-active{
+    & a{
+      background-color: $blue-base;
+      border-left-color: $white;
+    }
+  }
+  &.active{
+    & >a{
+      background-color: $blue-base;
+      border-left-color: $white;
+    }
+    li a{
+      background-color: #2d626d;
+      color: $white;
+    }
+  }
+}
+
+.box.box-primary{
+  border-top-color: $blue-base;
+}
+
+.btn-primary {
+  @include transition-ease-in-out();
+  background-color: $blue-base;
+  border-color: darken($blue-base, 5%);
+  @include hover-focus-active{
+    background-color: darken($blue-base, 5%);
+  }
+}
+
+.sonata-tree__item.is-active{
+  border-color: $blue-base;
+}

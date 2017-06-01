@@ -1,0 +1,12 @@
+AppBundle\Entity\OfficinePharmacien:
+    officinepharmacien_{1..10}:
+        nridLien: '<randomNumber(5)>'
+        officine: '@officine_<current()>'
+        pharmacien: '@pharmacien_1'
+        interlocuteurPrincipal: '<name()>'
+        dateEntree: '<dateTimeInInterval("-1 year", "now()")>'
+        dateSortie: '<dateTimeInInterval( "+1 day", "+1 year")>'
+        emailPro: '<email()>'
+        role: '<sentence(5)>'
+        telephone: '<e164PhoneNumber()>'
+        fonction: '<sentence(2)>'

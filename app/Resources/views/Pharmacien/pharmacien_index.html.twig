@@ -1,0 +1,257 @@
+{% extends ':default:index.html.twig' %}
+
+{% block content %}
+    {#{% for type, flash_messages in app.session.flashBag.all %}
+        {% for flash_message in flash_messages %}
+            <div class="alert alert-{{ type }}">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+    {% endfor %}#}
+
+    <div class="hc-col hc-col-1">
+        {% if listNews|length %}
+            <div class="hc-block hc-block-actus">
+                <div class="hc-block-roundedsquare"></div>
+                <div class="hc-block-header">
+                    <h2 class="hc-block-title">Les <span>actualités</span></h2>
+                </div>
+                <ul>
+                    {% for news in listNews %}
+                        <li>
+                            <a href="#TODO" class="media">
+                                <aside class="media-left">
+                                    <div class="media-left-inside">
+                                        <img src="{% path news.image, 'small' %}" alt=""/>
+                                    </div>
+                                </aside>
+                                <div class="media-body">
+                                    <p>{{ news.title|truncate(70, true) }}</p>
+                                    <span>Posté le {{ news.updatedAt.date|date("d F à G\\hi") }}</span>
+                                </div>
+                                <div class="media-right">
+                                    <div class="hc-block-news-more">+</div>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="" class="hc-block-footerlink">
+                    Toutes les actus
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="hc-block hc-block-typeimg hc-block-ecata">
+            <div class="hc-block-typeimg-leftcol">
+                <div class="hc-block-header">
+                    <div class="ic-medbottle"></div>
+                    <h2 class="hc-block-title">Notre <span>e-catalogue</span></h2>
+                </div>
+                <div class="hc-block-content">
+                    <p class="hc-block-content-top">
+                        Accédez aux fiches complètes de plus
+                        de 800 spécialités.
+                    </p>
+                    <p class="hc-block-content-sep"></p>
+                    <p class="hc-block-content-bottom">
+                        Exclusivités, nouveautés, ruptures...
+                    </p>
+                </div>
+            </div>
+            <div class="hc-block-typeimg-rightcol">
+                <img src="{{ asset('assets/img/e-catalogue.png') }}" alt="">
+                <a href="" class="hc-block-footerlink">
+                    Commander
+                </a>
+            </div>
+        </div>
+
+        <div class="hc-block hc-block-remis">
+            <div class="hc-block-roundedsquare"></div>
+            <div class="hc-block-header">
+                <div class="ic-remis"></div>
+                <h2 class="hc-block-title">Les Remis <span>pharmacien</span></h2>
+            </div>
+            <div class="hc-block-content">
+                <p class="hc-block-content-top-alone">
+                    Profitez d’outils pratiques qui facilitent votre quotidien.
+                </p>
+                <div class="hc-block-content-sep"></div>
+                <p class="hc-block-content-bottom-alone">
+                    Brochures patients, outils
+                    d’équivalence...
+                </p>
+            </div>
+            <a href="" class="hc-block-footerlink">
+                Accéder
+            </a>
+        </div>
+    </div>
+    <div class="hc-col hc-col-2">
+        <div class="hc-block hc-block-indicateurs">
+            <div class="hc-block-roundedsquare"></div>
+            <div class="hc-block-header">
+                <div class="ic-graph"></div>
+                <h2 class="hc-block-title">Mes indicateurs <span>de performance</span></h2>
+            </div>
+            <div class="hc-block-indicateurs-content">
+                <img src="{{ asset('assets/img/indicateurs.jpg') }}" alt="" class="img-responsive">
+            </div>
+            <a href="" class="hc-block-footerlink">
+                Accéder
+            </a>
+        </div>
+
+        <div class="hc-block hc-block-contrats">
+            <div class="hc-block-roundedsquare"></div>
+            <div class="hc-block-header">
+                <div class="ic-contrats"></div>
+                <h2 class="hc-block-title">Gestion de <span>mes contrats</span></h2>
+            </div>
+            <div class="hc-block-content">
+                <p class="hc-block-content-top-alone">
+                    Retrouvez tous vos contrats
+                    de prestation dans un même espace.
+                </p>
+                <p class="hc-block-content-sep"></p>
+                <div class="hc-bloc-contrats-bulle">
+                    <span>1</span>
+                </div>
+                <p class="hc-block-content-bottom">
+                    Contrat en attente de signature
+                </p>
+            </div>
+            <a href="" class="hc-block-footerlink">
+                Tous mes contrats
+            </a>
+        </div>
+
+        <div class="hc-block hc-block-typeimg hc-block-srv_patients clearfix">
+            <div class="hc-block-typeimg-leftcol">
+                <div class="hc-block-header">
+                    <div class="ic-services"></div>
+                    <h2 class="hc-block-title">Les services <span>patients</span></h2>
+                </div>
+                <div class="hc-block-content">
+                    <p class="hc-block-content-top">
+                        Des services pour vous
+                        aider à accompagner vos patients.
+                    </p>
+                    <p class="hc-block-content-sep"></p>
+                    <p class="hc-block-content-bottom">
+                        Kelmed®, Médimaux, Mon Urgence Pilule...
+                    </p>
+                </div>
+            </div>
+            <div class="hc-block-typeimg-rightcol">
+                <img src="{{ asset('assets/img/srv_patients.png') }}" alt="">
+                <a href="" class="hc-block-footerlink">
+                    Accéder
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hc-col hc-col-3">
+        {% if pmp.name|length %}
+            <div class="hc-block hc-block-delegue">
+                <div class="hc-block-roundedsquare"></div>
+                <div class="hc-block-header">
+                    <div class="ic-delegue"></div>
+                    <h2 class="hc-block-title">Mon <span>délégué</span></h2>
+                </div>
+                <div class="hc-block-content">
+                    <p class="hc-block-content-top hc-block-delegue-name">{{ pmp.name }}</p>
+                    <p class="hc-block-delegue-tel">
+                        <span class="ic-phone"></span>
+                        <a href="tel:{{ pmp.tel }}">{{ pmp.tel }}</a>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div class="hc-block hc-block-scli-pb clearfix">
+                <h2 class="hc-block-title">
+                    Vous rencontrez un problème
+                    <span>avec votre compte client ?</span>
+                </h2>
+                <div class="hc-block-scli-pb-container">
+                    <p class="hc-block-scli-txt">
+                        Contactez votre service client :
+                    </p>
+                    <a href="tel:{{ app_config.scli_number }}" class="hc-block-scli-nb"><span class="ic-phone"></span>{{ app_config.scli_number }}</a>
+                </div>
+                <p class="hc-block-scli-note">
+                    Prix d'un appel local
+                </p>
+            </div>
+        {% endif %}
+        <div class="hc-block hc-block-scli-pb clearfix">
+            <h2 class="hc-block-title">
+                Vous rencontrez un problème
+                <span>avec votre compte clent ?</span>
+            </h2>
+            <div class="hc-block-scli-pb-container">
+                <p class="hc-block-scli-txt">
+                    Contactez votre service client :
+                </p>
+                <a href="tel:{{ app_config.scli_number }}" class="hc-block-scli-nb"><span class="ic-phone"></span>{{ app_config.scli_number }}</a>
+            </div>
+            <p class="hc-block-scli-note">
+                Prix d'un appel local
+            </p>
+        </div>
+
+        <div class="hc-block hc-block-scli clearfix">
+            <div class="hc-block-scli-mobile-col">
+                <h2 class="hc-block-title">
+                    Mon service client <span>en ligne</span>
+                </h2>
+                <div class="ic-scli"></div>
+            </div>
+            <div class="hc-block-scli-mobile-col">
+                <p class="hc-block-scli-txt">paramétrage PML,
+                    calibrage PDA, levées de
+                    ruptures ...</p>
+            </div>
+            <a href="" class="hc-block-footerlink">
+                Une question ?
+            </a>
+        </div>
+
+        <div class="hc-block hc-block-formations">
+            <div class="hc-block-roundedsquare"></div>
+            <div class="hc-block-header">
+                <div class="ic-formation"></div>
+                <h2 class="hc-block-title">Mes programmes <span>et formations</span></h2>
+            </div>
+            <div class="hc-block-content">
+                <p class="hc-block-content-top">
+                    Renforcez votre expertise
+                    et votre rôle de conseil.
+                </p>
+                <div class="hc-block-content-sep"></div>
+                <p class="hc-block-content-bottom">
+                    Pathologies, rentabilité de
+                    l’officine, accompagnement ...
+                </p>
+            </div>
+            <a href="" class="hc-block-footerlink">
+                Accéder
+            </a>
+        </div>
+
+        <div class="hc-block hc-block-satisfaction">
+            <h2 class="hc-block-title">Satisfaction pharmacien</h2>
+            <img src="{{ asset('assets/img/stars.png') }}" alt="" class="img-responsive">
+            <p class="hc-block-satisfaction-note">4,8</p>
+            <p class="hc-block-satisfaction-content">
+                L'expert du marché français,<br/>le laboratoire préféré des pharmaciens.
+            </p>
+            <a href="" class="hc-block-footerlink">
+                Nos engagements
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

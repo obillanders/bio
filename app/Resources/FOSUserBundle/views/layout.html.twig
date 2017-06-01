@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {#<div>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+          </a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+</div>#}
+
+    {% block fos_user_content %}
+        <div class="ph-left-col">
+            <div class="header-mobile clearfix">
+                <h1 class="text-hide ph-h1-mobile">Biogaran.pro Espace officine</h1>
+                <a href="#mobile-connexion" class="ph-connexion_link-mobile">Connexion <span class="ic-userlog"></span></a>
+            </div>
+            <h1 class="text-hide ph-h1">Biogaran.pro Espace officine</h1>
+            <h2 class="ph-h2">La plateforme <span>connectée</span> aux<br/>
+                nouvelles attentes de votre métier</h2>
+
+            <div class="ph-blocs">
+                <div class="ph-blocs-row">
+                    <div class="ph-bloc ph-bloc-actus">
+                        <div class="ph-blocs-innertable">
+                            <div class="ph-bloc-ic ic-actus"></div>
+                            <div class="ph-bloc-txt">Les <span><strong>actualités</strong></span></div>
+                        </div>
+                    </div>
+                    <div class="ph-bloc ph-bloc-services">
+                        <div class="ph-blocs-innertable">
+                            <div class="ph-bloc-ic ic-services"></div>
+                            <div class="ph-bloc-txt">Vos <span><strong>services patients</strong></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ph-blocs-row">
+                    <div class="ph-bloc ph-bloc-indicateurs">
+                        <div class="ph-blocs-innertable">
+                            <div class="ph-bloc-ic ic-graph"></div>
+                            <div class="ph-bloc-txt">Vos <strong>indicateurs <span>et contrats</span></strong></div>
+                        </div>
+                    </div>
+                    <div class="ph-bloc ph-bloc-ecat">
+                        <div class="ph-blocs-innertable">
+                            <div class="ph-bloc-ic ic-medbottle"></div>
+                            <div class="ph-bloc-txt">Notre <span><strong>e-catalogue</strong></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ app_config.youtube_homepage }}" class="ph-videolink" data-lity>
+                <div class="ph-videolink-inside">
+                    <span class="ic-play"></span>
+                    <span class="ph-videolink-txt">Découvrez la vidéo</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="ph-right-col">
+            <div class="ph-right-col-scrollbox {{ app.request.pathInfo|trim('/')|replace('/', '-') }}">
+
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        <div class="flash-msg">
+                            {% for message in messages %}
+                                <div class="flash-{{ type }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% block prehome_right_content %}{% endblock %}
+            </div>
+        </div>
+
+        <footer class="ph-footer clearfix">
+            <div class="ph-right-col-footer">
+                <ul>
+                    <li>
+                        <a href="{{ path('app_contact') }}">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#">Mentions légales</a>
+                    </li>
+                    <li>
+                        <p>Mise à jour le xx/xx</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="ph-left-col-footer ftr-pink">chaque jour, agir pour la santé.</div>
+
+        </footer>
+        {# </div>#}
+    {% endblock fos_user_content %}
+{% endblock body %}
+

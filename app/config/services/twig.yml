@@ -1,0 +1,7 @@
+services:
+    app.twig_extension.officine_selector:
+        class: AppBundle\Twig\OfficineSelectorExtension
+        arguments:
+          - '@app.officine_selector'
+        tags:
+          - { name: twig.extension }

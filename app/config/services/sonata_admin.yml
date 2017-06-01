@@ -1,0 +1,24 @@
+services:
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
+
+    admin.news:
+        class: AppBundle\Admin\NewsAdmin
+        arguments: [~, AppBundle\Entity\News, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: News }
+
+    admin.faq:
+        class: AppBundle\Admin\FaqAdmin
+        arguments: [~, AppBundle\Entity\Faq, AppBundle:Admin\FaqAdmin, 'title']
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Faq }
+
+    admin.pharmacien:
+        class: AppBundle\Admin\PharmacienAdmin
+        arguments: [~, AppBundle\Entity\Pharmacien, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Pharmacien }

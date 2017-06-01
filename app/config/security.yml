@@ -1,0 +1,40 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                success_handler: app.success_handler
+            logout:       true
+            anonymous:    true
+            switch_user: { parameter: _connect_as }
+
+    role_hierarchy:
+        ROLE_OFFICINE_OWNER: ROLE_USER
+        ROLE_OFFICINE_OWNER_CERTIFY: ROLE_OFFICINE_OWNER
+        ROLE_ADMIN: [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/pharmacien, role: ROLE_OFFICINE_OWNER }

@@ -1,0 +1,23 @@
+{% extends ':Mail:base_email.html.twig' %}
+
+{% block subject %}
+    {%- autoescape false -%}
+        Confirmation de message
+    {%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+    {% autoescape false %}
+
+    {% endautoescape %}
+{% endblock %}
+
+{% block mail_content %}
+    {% autoescape false %}
+        Bonjour,
+
+        Votre message a bien été transmit. vous serez contactez sous peu.
+
+        Bonne journée.
+    {% endautoescape %}
+{% endblock %}

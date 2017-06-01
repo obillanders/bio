@@ -1,0 +1,4 @@
+AppBundle\Entity\Faq:
+    faq{1..10}:
+        title: 'Faq <randomNumber(5)>'
+        response: '<sentence()>'

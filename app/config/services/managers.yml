@@ -1,0 +1,63 @@
+services:
+    app.manager_locator:
+        class: AppBundle\Service\ManagerLocator
+
+    app.manager_tools:
+        class: AppBundle\Service\ManagerTools
+        arguments: ["@doctrine", "@app.result_factory", "@validator", "@monolog.logger.doctrine", "@event_dispatcher"]
+
+    app.manager.user:
+        class: AppBundle\Manager\UserManager
+        arguments:
+            - '@app.user.password_helper'
+            - '@fos_user.util.password_updater'
+            - '@fos_user.util.canonical_fields_updater'
+            - '@fos_user.object_manager'
+            - '%fos_user.model.user.class%'
+
+    app.manager.pharmacien:
+        class: AppBundle\Manager\PharmacienManager
+        arguments: [AppBundle\Entity\Pharmacien, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }
+
+    app.manager.officine:
+        class: AppBundle\Manager\OfficineManager
+        arguments: [AppBundle\Entity\Officine, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }
+
+    app.manager.officine_pharmacien:
+        class: AppBundle\Manager\OfficinePharmacienManager
+        arguments: [AppBundle\Entity\OfficinePharmacien, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }
+
+    app.manager.import_log:
+        class: AppBundle\Manager\ImportLogManager
+        arguments: [AppBundle\Entity\ImportLog, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }
+
+    app.manager.rdi:
+        class: AppBundle\Manager\RdiManager
+        arguments: [AppBundle\Entity\Rdi, "@app.manager_tools", "%rdi%", "@twig"]
+        tags:
+            - { name: app.manager }
+
+    app.manager.news:
+        class: AppBundle\Manager\NewsManager
+        arguments: [AppBundle\Entity\News, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }
+
+    app.manager.contrat:
+        class: AppBundle\Manager\ContratManager
+        arguments: [AppBundle\Entity\Contrat, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }
+    app.manager.officine:
+        class: AppBundle\Manager\OfficineManager
+        arguments: [AppBundle\Entity\Officine, "@app.manager_tools"]
+        tags:
+            - { name: app.manager }

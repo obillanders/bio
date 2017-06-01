@@ -1,0 +1,15 @@
+{# Override of https://github.com/sonata-project/SonataUserBundle/blob/master/Resources/views/Admin/Core/user_block.html.twig #}
+
+{% block user_block %}
+    {% if app.user %}
+        {% set _bg_class          = "bg-light-blue" %}
+        {% set _logout_uri        = url('fos_user_security_logout') %}
+        {% set _logout_text       = 'user_block_logout'|trans({}, 'SonataUserBundle') %}
+
+        <li class="user-footer">
+            <div class="pull-right">
+                <a href="{{ _logout_uri }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> {{ _logout_text }}</a>
+            </div>
+        </li>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,89 @@
+app:
+    path: /
+    defaults:
+        _controller: AppBundle:App:index
+
+# Routing pour les url généré dynamiquement et les crud
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+admin_area:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+    prefix: /admin
+
+gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /admin/media/gallery
+
+media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /admin/media
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+import_index:
+    path: /import
+    defaults:
+        _controller: AppBundle:Import:index
+
+pharmacien_homepage:
+    path: /pharmacien
+    defaults:
+        _controller: AppBundle:Pharmacien:homepage
+
+pharmacien_change_current_officine:
+    path: /pharmacien/change-current-officine
+    methods:  [POST]
+    defaults:
+        _controller: AppBundle:Pharmacien:setCurrentOfficine
+
+pharmacien_engagements:
+    path: /pharmacien/engagements
+    defaults:
+        _controller: AppBundle:Pharmacien:engagements
+
+pharmacien_catalogue:
+    path: /pharmacien/catalogue
+    defaults:
+        _controller: AppBundle:Pharmacien:catalogue
+
+pharmacien_formations:
+    path: /pharmacien/formations
+    defaults:
+        _controller: AppBundle:Pharmacien:formations
+
+pharmacien_services_ligne:
+    path: /pharmacien/services-ligne
+    defaults:
+        _controller: AppBundle:Pharmacien:servicesLigne
+
+pharmacien_services_patients:
+    path: /pharmacien/services-patients
+    defaults:
+        _controller: AppBundle:Pharmacien:servicesPatients
+
+redcode_tree:
+    resource: "@RedCodeTreeBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+# API Routes Configuration
+app_api:
+    resource: routing_api.yml
+    prefix:   /api
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+app_contact:
+    path: /contact
+    defaults:
+        _controller: 'AppBundle:Contact:contact'
+
+app_profil:
+    path: /profil
+    defaults:
+        _controller: 'AppBundle:Profil:profil'

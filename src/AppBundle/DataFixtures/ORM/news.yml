@@ -1,0 +1,7 @@
+AppBundle\Entity\News:
+    news{1..10}:
+        title: 'News <randomNumber(5)>'
+        body: '<sentence()>'
+        category: '@category_1'
+        draft: '<boolean(30)>'
+        image: '@image_news_<numberBetween(1,2)>'

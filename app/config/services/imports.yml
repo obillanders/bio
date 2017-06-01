@@ -1,0 +1,20 @@
+services:
+    app.import_manager:
+        class: AppBundle\Import\ImportManager
+        arguments: ["@app.manager_locator", "@monolog.logger.import", "@app.manager.import_log"]
+
+    app.import_csv_handler:
+        class: AppBundle\Import\ImportCsvHandler
+        arguments: ["@app.csv_encoder", "@serializer"]
+        tags:
+            - { name: 'app.import_handler', handler_type: 'csv' }
+
+    officine_serializer_handler:
+        class: AppBundle\Import\Serializer\OfficineSerializerHandler
+        tags:
+            - { name: jms_serializer.subscribing_handler }
+
+    pharmacien_serializer_handler:
+        class: AppBundle\Import\Serializer\PharmacienSerializerHandler
+        tags:
+            - { name: jms_serializer.subscribing_handler }

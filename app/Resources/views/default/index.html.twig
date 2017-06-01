@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="mm-overlay"></div>
+    <div class="container-fluid">
+        {% include(':default:header.html.twig') %}
+
+        <nav class="main_menu">
+            <div class="mm-toggle">
+                <div class="mm-toggle-ic ic-cross"></div>
+                <div class="mm-toggle-txt">Menu</div>
+            </div>
+
+            {{ knp_menu_render('nridInterlocuteur', {'allow_safe_labels': true, 'template': ':Menu:knp_menu.html.twig'}) }}
+        </nav>
+        <div class="main-content clearfix">
+            {% block content %}{% endblock %}
+        </div>
+        {% include(':default:footer.html.twig') %}
+    </div>
+
+{% endblock %}
+
+

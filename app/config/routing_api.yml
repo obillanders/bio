@@ -1,0 +1,3 @@
+app_api_user:
+    resource: AppBundle:Api\UserPharmacienApi
+    type:     rest

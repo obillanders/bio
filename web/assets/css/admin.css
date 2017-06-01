@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/************************************************************
+ *  @_12 : Font-Size
+ ************************************************************/
+a {
+  color: #2db4d1;
+  -webkit-transition: all 0.2s ease-in-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.2s ease-in-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.2s ease-in-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.2s ease-in-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */ }
+  a:hover, a:active, a:focus {
+    color: #2490a7; }
+
+.btn-link {
+  color: #2db4d1; }
+
+.logo img {
+  max-width: 100%;
+  height: auto; }
+
+.logo span {
+  display: none; }
+
+.sonata-bc .sidebar .sidebar-menu > li:hover a, .sonata-bc .sidebar .sidebar-menu > li:active a, .sonata-bc .sidebar .sidebar-menu > li:focus a {
+  background-color: #2db4d1;
+  border-left-color: #ffffff; }
+
+.sonata-bc .sidebar .sidebar-menu > li.active > a {
+  background-color: #2db4d1;
+  border-left-color: #ffffff; }
+
+.sonata-bc .sidebar .sidebar-menu > li.active li a {
+  background-color: #2d626d;
+  color: #ffffff; }
+
+.box.box-primary {
+  border-top-color: #2db4d1; }
+
+.btn-primary {
+  -webkit-transition: all 0.2s ease-in-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.2s ease-in-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.2s ease-in-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.2s ease-in-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+  background-color: #2db4d1;
+  border-color: #28a2bc; }
+  .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #28a2bc; }
+
+.sonata-tree__item.is-active {
+  border-color: #2db4d1; }
+
+/*# sourceMappingURL=admin.css.map */

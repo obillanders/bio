@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+footer {
+    background-color: $white;
+    padding: 0 0 0 $menuWidth;
+    border-top: 6px solid $grey-lighter;
+    font-size: 12px;
+}
+
+.ftr-col {
+    width: 20%;
+    padding: 3%;
+    float: left;
+    a {
+        display: block;
+        margin: 0 0 5px 0;
+        color: $grey-blue-light;
+        @include hover-focus-active {
+            color: $grey-blue;
+        }
+    }
+    .ftr-h4 a {
+        color: $grey-blue;
+        @include hover-focus-active {
+            color: lighten($grey-blue, 15%);
+        }
+    }
+}
+
+.ftr-pharmacovigilance {
+    text-align: center;
+    font: normal 12px/1.3em bentonsans-medium, sans-serif;
+}
+
+.ftr-pharmacovigilance-titre {
+    padding: 10px 0;
+    margin: 0;
+    background-color: $blue-base;
+    color: $white;
+}
+
+a.ftr-pharmacovigilance-link {
+    display: block;
+    padding:3px ;
+    border: 1px solid $grey-lighter;
+    border-top: none;
+    color: $blue-base;
+}
+
+.ftr-social {
+    list-style-type: none;
+    margin:0 0 10px 0;
+    li {
+        display: inline-block;
+        margin: 0 5px 0 0;
+        vertical-align: middle;
+        a {
+            color: $pink-base;
+            @include hover-focus-active {
+                color: darken($pink-base, 10%);
+            }
+        }
+        &:last-child {
+            font-size: 22px;
+        }
+    }
+}
+
+.ftr-lower {
+    border-top: 2px solid $grey-lighter;
+    padding: 20px 3%;
+    color: $grey-light;
+}
+
+.ftr-pink {
+    //float: left;
+    height: 40px;
+    padding: 11px 0 0 0;
+    //width: 70%;
+    background-color: $pink-base;
+    font: normal 18px/1em "helvetica";
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Media queries */
+@media screen and (max-width: 767px) {
+
+    footer {
+        padding: 0;
+        margin: 0 -10px;
+        .page & {
+            margin: 0;
+        }
+    }
+    .ftr-upper {
+        padding: 20px;
+    }
+    .ftr-col {
+        float: none;
+        width: 100%;
+        padding: 0;
+        h4, a {
+            margin: 0 0 20px 0;
+        }
+        a {
+            font-size: 14px;
+        }
+    }
+    .ftr-mobile-col {
+        width: 50%;
+        float: left;
+    }
+    a.ftr-pharmacovigilance-link {
+        margin: 0;
+        padding: 5px 0;
+        font-size: 12px;
+    }
+}
+

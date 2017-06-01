@@ -1,0 +1,122 @@
+From 75312e06722aa610f39ed2f40669bd5d1bac98aa Mon Sep 17 00:00:00 2001
+From: Jordi <jordism91@gmail.com>
+Date: Tue, 7 Feb 2017 08:19:24 +0100
+Subject: [PATCH] Fixed compatibility with SF3 (#1191)
+
+- Removed cascade_validation since the Valid annotation does the same
+- Callback contraint is not a valid callable on SF3, replaced with validation on PHP
+  in order to keep BC
+- BaseAdmin incorrectly retrieved providerName
+---
+ Admin/BaseMediaAdmin.php        | 11 ++++++++++-
+ Admin/GalleryAdmin.php          | 17 +++++++----------
+ Model/Media.php                 | 17 +++++++++++++++++
+ Resources/config/validation.xml |  8 +++-----
+ 4 files changed, 37 insertions(+), 16 deletions(-)
+
+diff --git a/Admin/BaseMediaAdmin.php b/Admin/BaseMediaAdmin.php
+index 0ef89e1..e5221b3 100644
+--- a/Admin/BaseMediaAdmin.php
++++ b/Admin/BaseMediaAdmin.php
+@@ -106,7 +106,16 @@ public function getNewInstance()
+ 
+         if ($this->hasRequest()) {
+             if ($this->getRequest()->isMethod('POST')) {
+-                $media->setProviderName($this->getRequest()->get(sprintf('%s[providerName]', $this->getUniqid()), null, true));
++                if (method_exists('Symfony\Component\HttpFoundation\JsonResponse', 'transformJsonError')) {
++                    // NEXT_MAJOR remove this block when dropping sf < 2.8 compatibility
++                    $media->setProviderName(
++                        $this->getRequest()->get(sprintf('%s[providerName]', $this->getUniqid()), null, true)
++                    );
++                } else {
++                    $providerParams = $this->getRequest()->get($this->getUniqid());
++                    $media->setProviderName($providerParams['providerName']);
++
++                }
+             } else {
+                 $media->setProviderName($this->getRequest()->get('provider'));
+             }
+diff --git a/Admin/GalleryAdmin.php b/Admin/GalleryAdmin.php
+index c826b83..671455e 100644
+--- a/Admin/GalleryAdmin.php
++++ b/Admin/GalleryAdmin.php
+@@ -127,16 +127,13 @@ protected function configureFormFields(FormMapper $formMapper)
+                 ->add('defaultFormat', 'choice', array('choices' => $formats))
+             ->end()
+             ->with('Gallery')
+-                ->add('galleryHasMedias', 'sonata_type_collection', array(
+-                        'cascade_validation' => true,
+-                    ), array(
+-                        'edit' => 'inline',
+-                        'inline' => 'table',
+-                        'sortable' => 'position',
+-                        'link_parameters' => array('context' => $context),
+-                        'admin_code' => 'sonata.media.admin.gallery_has_media',
+-                    )
+-                )
++                ->add('galleryHasMedias', 'sonata_type_collection', array(), array(
++                    'edit' => 'inline',
++                    'inline' => 'table',
++                    'sortable' => 'position',
++                    'link_parameters' => array('context' => $context),
++                    'admin_code' => 'sonata.media.admin.gallery_has_media',
++                ))
+             ->end()
+         ;
+     }
+diff --git a/Model/Media.php b/Model/Media.php
+index 2afbd2d..d2002e9 100644
+--- a/Model/Media.php
++++ b/Model/Media.php
+@@ -13,8 +13,10 @@
+ 
+ use Imagine\Image\Box;
+ use Sonata\ClassificationBundle\Model\CategoryInterface;
++use Symfony\Component\Validator\Constraints as Assert;
+ use Symfony\Component\Validator\Context\ExecutionContextInterface;
+ use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionContextInterface;
++use Symfony\Component\Validator\Mapping\ClassMetadata;
+ 
+ abstract class Media implements MediaInterface
+ {
+@@ -612,6 +614,21 @@ public function getPreviousProviderReference()
+     }
+ 
+     /**
++     * NEXT_MAJOR: Remove this method when bumping Symfony requirement to 2.8+.
++     *
++     * @param ClassMetadata $metadata
++     */
++    public static function loadValidatorMetadata(ClassMetadata $metadata)
++    {
++        if (class_exists('Symfony\Component\Validator\Constraints\Expression')) {
++            $method = 'isStatusErroneous';
++        } else {
++            $method = array('methods' => array('isStatusErroneous'));
++        }
++        $metadata->addConstraint(new Assert\Callback($method));
++    }
++
++    /**
+      * @param ExecutionContextInterface|LegacyExecutionContextInterface $context
+      */
+     public function isStatusErroneous($context)
+diff --git a/Resources/config/validation.xml b/Resources/config/validation.xml
+index 2017095..3a2e500 100644
+--- a/Resources/config/validation.xml
++++ b/Resources/config/validation.xml
+@@ -1,11 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping         http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+     <class name="Sonata\MediaBundle\Model\Media">
+-        <constraint name="Callback">
+-            <option name="methods">
+-                <value>isStatusErroneous</value>
+-            </option>
+-        </constraint>
++        <!-- NEXT_MAJOR: Uncomment Following line
++        <constraint name="Callback">isStatusErroneous</constraint>
++        -->
+         <constraint name="Sonata\CoreBundle\Validator\Constraints\InlineConstraint">
+             <option name="service">sonata.media.pool</option>
+             <option name="method">validate</option>

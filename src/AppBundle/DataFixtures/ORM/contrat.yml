@@ -1,0 +1,16 @@
+AppBundle\Entity\Contrat:
+    contrat{1..10}:
+        nridPharmacie: '@officine_<numberBetween(1, 10)>'
+        nridContrat: '<randomNumber(5)>'
+        reference: '<randomNumber(3)>'
+        modele: '<word()>'
+        dateDebut: '<dateTime("now")>'
+        dateFin: '<dateTime("now")>'
+        montantTtc: '<randomFloat()>'
+        numeroFacture: '<randomNumber(2)>'
+        dateFacture: '<dateTime("now")>'
+        renvoiContrat: '<dateTime("now")>'
+        canal: '<word()>'
+        urlContratASigner: '<url()>'
+        statutCourant: '<word()>'
+        dateStatut: '<dateTime("now")>'

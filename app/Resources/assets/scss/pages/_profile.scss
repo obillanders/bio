@@ -1,0 +1,302 @@
+@charset "UTF-8";
+
+.profil {
+    .h1-container {
+        margin: 0 0 20px 0;
+        h1 {
+            background-color: $orange-base;
+        }
+    }
+    .hc-block-scli {
+        .hc-block-title {
+            margin: 0;
+        }
+        .hc-block-scli-txt {
+            margin-top: 0;
+            span {
+                display: block;
+                margin: 0 -25px;
+            }
+        }
+    }
+}
+
+.profil-block-mon_compte {
+    border-left: 2px solid $orange2;
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $orange2;
+    }
+    .hc-block-title {
+        span {
+            color: $orange2;
+        }
+    }
+    ul {
+        list-style-type: none;
+        overflow: hidden;
+        li {
+            margin: 0 0 15px 0;
+        }
+        span {
+            display: inline-block;
+            width: 30%;
+            color: $orange2;
+        }
+        .profil-block-mon_compte-nom,
+        .profil-block-mon_compte-prenom {
+            font-size: 15px;
+            color: $grey-blue;
+        }
+        .profil-block-mon_compte-optin {
+            position: relative;
+            padding: 0 0 0 30%;
+            span {
+                width: 90%;
+                color: $grey-light;
+            }
+        }
+    }
+}
+
+.profile-block-change_password {
+    border-left: 2px solid $orange3;
+    [class^="ic-"], [class*=" ic-"] {
+        background-color: $orange3;
+    }
+    .hc-block-title {
+        span {
+            color: $orange3;
+        }
+    }
+    .hc-block-footerlink {
+        width: 75%;
+    }
+}
+
+// Officines
+.profile-block-officines {
+    border-left: 2px solid $orange-base;
+    .hc-block-content{
+        margin:30px;
+    }
+    .hc-block-header{
+        [class^="ic-"], [class*=" ic-"] {
+            background-color: $orange-base;
+        }
+    }
+    .hc-block-title {
+        span {
+            color: $orange-base;
+        }
+    }
+}
+
+.profile-block-officines-detail {
+    @include border-radius(5px);
+    border: 1px solid $grey-lighter;
+
+    .pb-officines-header{
+        padding:10px 10px 25px 10px;
+        margin:0;
+        display: table;
+        div{
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+    .pb-officines-header-ic{
+        @include border-radius(5px);
+        width:40px;
+        height:40px;
+        line-height:40px;
+        border:1px solid lighten($orange2, 40%);
+        background-color: lighten($orange2, 45%);
+        color: $orange2;
+        font-size:35px;
+        text-align: center;
+    }
+    .pb-officines-header-txt{
+        display: inline-block;
+        position: relative;
+        padding:0 0 0 10px ;
+        color: $grey-blue;
+        font-size:16px;
+        &:before{
+            content:"";
+            display: block;
+            height:1px;
+            width:24px;
+            position: absolute;
+            left:10px;
+            bottom:-10px;
+            background-color: $grey-blue;
+        }
+    }
+    .pb-officines-content-line{
+        margin: 0;
+        padding:0 10px;
+        div{
+            display: inline-block;
+            vertical-align: middle;
+            margin:0;
+        }
+    }
+    .pb-officines-content-ic{
+        width:35px;
+        color: $orange2;
+        font-size:25px;
+    }
+    .pb-officines-content-txt{
+        padding:0 0 0 10px;
+    }
+    .pb-officines-footer{
+        @include border-btm-left-radius(6px);
+        @include border-btm-right-radius(6px);
+        margin:10px 0 0 0;
+        border-top:2px dotted $grey-lighter;
+        background-color: $blue-light;
+        display: table;
+        width:100%;
+        .pb-officines-footer-leftcol,
+        .pb-officines-footer-rightcol{
+            width:50%;
+            margin:0;
+            display: table-cell;
+            vertical-align: middle;
+            padding:15px 10px;
+        }
+
+        .pb-officines-footer-leftcol{
+            div{
+                display: inline-block;
+                vertical-align: middle;
+                margin:0;
+            }
+            .pb-officines-footer-ic{
+                @include border-radius(5px);
+                width:40px;
+                height:40px;
+                line-height:35px;
+                border:1px solid lighten($blue-base, 35%);
+                background-color: lighten($blue-base, 40%);
+                color: $blue-base;
+                font-size:25px;
+                text-align: center;
+
+            }
+            .pb-officines-footer-txt{
+                padding:0 0 0 10px;
+                font:normal 14px/1.3em 'bentonsans-condensedregular', sans-serif;
+                text-transform: uppercase;
+                color: $grey-blue;
+                span{
+                    display: block;
+                    color: $blue-base;
+                }
+            }
+        }
+        .pb-officines-footer-rightcol{
+            border-left:1px solid $grey-lighter;
+            .pb-officines-footer-nom_pmp{
+                margin:0 0 0 25px;
+                font-size:13px;
+                color: $grey-blue;
+            }
+            .pb-officines-footer-nb_pmp{
+                margin:0;
+                span, a{
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                span{
+                    color: $blue-base;
+                    font-size:20px;
+                    width:20px;
+                    height:20px;
+                }
+            }
+        }
+    }
+}
+
+// Fin Officines
+
+@media screen and (max-width: 1200px) {
+    .profil-block-mon_compte {
+        ul {
+            span {
+                display: block;
+            }
+            .profil-block-mon_compte-optin {
+                padding: 0 0 0 20px;
+            }
+        }
+    }
+    .profile-block-officines {
+        .hc-block-content {
+            margin: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 767px) {
+    .profile-block-officines-detail .pb-officines-footer {
+        display: block;
+       // text-align: center;
+        .pb-officines-footer-leftcol,
+        .pb-officines-footer-rightcol{
+            display: inline-block;
+            width:100%;
+        }
+        .pb-officines-footer-rightcol{
+            border:0;
+            padding-top:0;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profil {
+        .hc-block-scli {
+            /*.hc-block-title{
+                margin:0;
+            }*/
+            .hc-block-scli-txt {
+                span {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .profil-block-mon_compte {
+        ul {
+            span {
+                display: inline-block;
+                width: 20%;
+            }
+            .profil-block-mon_compte-optin {
+                padding: 0 0 0 20%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .profil .main-content h1 {
+        font-size: 28px;
+        margin-left: -100px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profil-block-mon_compte {
+        ul {
+            span {
+                display: block;
+            }
+            .profil-block-mon_compte-optin {
+                padding: 0 0 0 25px;
+            }
+        }
+    }
+}
